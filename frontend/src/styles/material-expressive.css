@@ -1,0 +1,501 @@
+/**
+ * Material Design 3 — Expressive
+ * Refresh visual sobre la estructura Axero + paleta Insular (#002b4e).
+ */
+
+:root {
+  /* Paleta corporativa (sin cambios) */
+  --intranet-navy: #002b4e;
+  --intranet-navy-hover: #003d6b;
+  --intranet-navy-muted: #1e5a8a;
+  --intranet-slate: #5a6e82;
+  --intranet-slate-hover: #4a5d70;
+  --intranet-chart: #2d6a9f;
+  --intranet-chart-accent: #4a8bc4;
+
+  /* M3 — formas expressivas */
+  --m3-shape-xs: 8px;
+  --m3-shape-sm: 12px;
+  --m3-shape-md: 16px;
+  --m3-shape-lg: 24px;
+  --m3-shape-xl: 28px;
+  --m3-shape-full: 9999px;
+
+  /* M3 — superficies */
+  --m3-surface: #ffffff;
+  --m3-surface-dim: #f2f6fa;
+  --m3-surface-bright: #ffffff;
+  --m3-surface-container-lowest: #ffffff;
+  --m3-surface-container-low: #f8fafc;
+  --m3-surface-container: #eef3f8;
+  --m3-surface-container-high: #e3edf5;
+  --m3-surface-container-highest: #d8e6f2;
+
+  /* M3 — color (mapeado a Insular) */
+  --m3-primary: var(--intranet-navy);
+  --m3-on-primary: #ffffff;
+  --m3-primary-container: rgba(0, 43, 78, 0.1);
+  --m3-on-primary-container: var(--intranet-navy);
+  --m3-secondary-container: rgba(45, 106, 159, 0.12);
+  --m3-on-secondary-container: var(--intranet-navy-muted);
+
+  /* M3 — texto y contornos */
+  --m3-on-surface: #0f172a;
+  --m3-on-surface-variant: #475569;
+  --m3-outline: #e2e8f0;
+  --m3-outline-variant: #cbd5e1;
+
+  /* M3 — elevación (sutil, sin sombras pesadas) */
+  --m3-elevation-0: none;
+  --m3-elevation-1: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --m3-elevation-2: 0 2px 6px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.05);
+  --m3-elevation-3: 0 8px 20px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(15, 23, 42, 0.04);
+
+  /* M3 — motion */
+  --m3-motion-standard: cubic-bezier(0.2, 0, 0, 1);
+  --m3-motion-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --m3-duration-short: 150ms;
+  --m3-duration-medium: 250ms;
+  --m3-duration-long: 350ms;
+
+  --m3-font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Base ── */
+body {
+  font-family: var(--m3-font);
+  background: var(--m3-surface-dim);
+  color: var(--m3-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  background: var(--m3-surface-dim);
+}
+
+.main-wrapper {
+  background: var(--m3-surface-dim);
+}
+
+.section {
+  background: transparent;
+}
+
+/* ── Tarjetas (Axero .card-style) ── */
+.card-style {
+  background: var(--m3-surface) !important;
+  border: 1px solid var(--m3-outline) !important;
+  border-radius: var(--m3-shape-xl) !important;
+  box-shadow: var(--m3-elevation-1) !important;
+  padding: 24px 28px !important;
+  transition:
+    box-shadow var(--m3-duration-medium) var(--m3-motion-standard),
+    border-color var(--m3-duration-short) var(--m3-motion-standard),
+    transform var(--m3-duration-medium) var(--m3-motion-standard);
+}
+
+.card-style:hover {
+  box-shadow: var(--m3-elevation-2) !important;
+}
+
+.card-style-2 {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline) !important;
+  box-shadow: var(--m3-elevation-1) !important;
+  overflow: hidden;
+  transition: box-shadow var(--m3-duration-medium) var(--m3-motion-standard);
+}
+
+.card-style-2:hover {
+  box-shadow: var(--m3-elevation-2) !important;
+}
+
+/* ── Header ── */
+.header {
+  background: var(--m3-surface-container-lowest) !important;
+  border-bottom: 1px solid var(--m3-outline);
+  padding: 14px 0 !important;
+  box-shadow: var(--m3-elevation-1);
+}
+
+.header .header-left .menu-toggle-btn .main-btn.primary-btn {
+  border-radius: var(--m3-shape-full) !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  box-shadow: var(--m3-elevation-1);
+  transition:
+    background var(--m3-duration-short) var(--m3-motion-standard),
+    box-shadow var(--m3-duration-short) var(--m3-motion-standard),
+    transform var(--m3-duration-short) var(--m3-motion-standard);
+}
+
+.header .header-left .menu-toggle-btn .main-btn.primary-btn:hover {
+  box-shadow: var(--m3-elevation-2);
+  transform: translateY(-1px);
+}
+
+.header .header-left .header-search form input {
+  border-radius: var(--m3-shape-full) !important;
+  border: 1px solid var(--m3-outline) !important;
+  background: var(--m3-surface-container-low) !important;
+  padding: 10px 16px 10px 44px !important;
+  font-size: 0.875rem;
+  transition:
+    border-color var(--m3-duration-short) var(--m3-motion-standard),
+    background var(--m3-duration-short) var(--m3-motion-standard),
+    box-shadow var(--m3-duration-short) var(--m3-motion-standard);
+}
+
+.header .header-left .header-search form input:focus {
+  background: var(--m3-surface) !important;
+  border-color: var(--m3-primary) !important;
+  box-shadow: 0 0 0 3px var(--m3-primary-container);
+}
+
+/* ── Títulos de página ── */
+.title-wrapper {
+  padding-top: 8px !important;
+}
+
+.title-wrapper .title h2 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em;
+  color: var(--m3-on-surface) !important;
+  line-height: 1.2;
+}
+
+.title-wrapper .breadcrumb-wrapper .breadcrumb {
+  background: var(--m3-surface-container);
+  border-radius: var(--m3-shape-full);
+  padding: 8px 16px !important;
+  margin: 0;
+}
+
+.title-wrapper .breadcrumb-wrapper .breadcrumb li,
+.title-wrapper .breadcrumb-wrapper .breadcrumb li a {
+  font-size: 0.8125rem !important;
+  font-weight: 500;
+}
+
+.title-wrapper .breadcrumb-wrapper .breadcrumb li a {
+  color: var(--m3-on-surface-variant) !important;
+  text-decoration: none;
+  border-radius: var(--m3-shape-sm);
+  transition: color var(--m3-duration-short) var(--m3-motion-standard);
+}
+
+.title-wrapper .breadcrumb-wrapper .breadcrumb li a:hover {
+  color: var(--m3-primary) !important;
+}
+
+.title-wrapper .breadcrumb-wrapper .breadcrumb li.active {
+  color: var(--m3-primary) !important;
+  font-weight: 600;
+}
+
+/* ── Botones Axero (.main-btn) ── */
+.main-btn {
+  border-radius: var(--m3-shape-full) !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition:
+    background var(--m3-duration-short) var(--m3-motion-standard),
+    border-color var(--m3-duration-short) var(--m3-motion-standard),
+    box-shadow var(--m3-duration-short) var(--m3-motion-standard),
+    transform var(--m3-duration-short) var(--m3-motion-standard) !important;
+}
+
+.main-btn:hover {
+  transform: translateY(-1px);
+}
+
+.main-btn:active {
+  transform: translateY(0);
+}
+
+.primary-btn,
+.primary-btn.btn-hover {
+  box-shadow: var(--m3-elevation-1);
+}
+
+.primary-btn:hover,
+.primary-btn.btn-hover:hover {
+  box-shadow: var(--m3-elevation-2);
+}
+
+.primary-btn-light {
+  border-radius: var(--m3-shape-full) !important;
+}
+
+/* ── Botones admin / módulos (unificados M3) ── */
+.admin-btn,
+.docs-sp-btn {
+  border-radius: var(--m3-shape-full) !important;
+  font-weight: 600 !important;
+  transition:
+    background var(--m3-duration-short) var(--m3-motion-standard),
+    border-color var(--m3-duration-short) var(--m3-motion-standard),
+    box-shadow var(--m3-duration-short) var(--m3-motion-standard),
+    transform var(--m3-duration-short) var(--m3-motion-standard) !important;
+}
+
+.admin-btn--primary,
+.docs-sp-btn--primary {
+  box-shadow: var(--m3-elevation-1);
+}
+
+.admin-btn--primary:hover:not(:disabled),
+.docs-sp-btn--primary:hover:not(:disabled) {
+  box-shadow: var(--m3-elevation-2);
+  transform: translateY(-1px);
+  color: #fff !important;
+}
+
+.admin-btn--ghost,
+.docs-sp-btn--secondary {
+  background: var(--m3-surface-container-low) !important;
+  border-color: var(--m3-outline) !important;
+  color: var(--m3-on-surface) !important;
+}
+
+.admin-btn--ghost:hover:not(:disabled),
+.docs-sp-btn--secondary:hover:not(:disabled) {
+  background: var(--m3-surface-container) !important;
+  border-color: var(--m3-outline-variant) !important;
+  color: var(--m3-primary) !important;
+}
+
+/* ── Formularios ── */
+.admin-form__input,
+input.form-control,
+select.form-control,
+textarea.form-control {
+  border-radius: var(--m3-shape-md) !important;
+  border: 1px solid var(--m3-outline) !important;
+  background: var(--m3-surface-container-lowest) !important;
+  transition:
+    border-color var(--m3-duration-short) var(--m3-motion-standard),
+    box-shadow var(--m3-duration-short) var(--m3-motion-standard) !important;
+}
+
+.admin-form__input:focus,
+input.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+  border-color: var(--m3-primary) !important;
+  box-shadow: 0 0 0 3px var(--m3-primary-container) !important;
+  outline: none !important;
+}
+
+.admin-form__label {
+  color: var(--m3-on-surface-variant);
+  letter-spacing: 0.01em;
+}
+
+/* ── Tablas ── */
+.sd-table th,
+.admin-table th,
+table.table thead th {
+  background: var(--m3-surface-container) !important;
+  color: var(--m3-on-surface-variant) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--m3-outline) !important;
+}
+
+.sd-table td,
+.admin-table td,
+table.table tbody td {
+  border-bottom: 1px solid var(--m3-outline) !important;
+}
+
+.sd-table tbody tr:hover,
+.admin-table tbody tr:hover,
+table.table tbody tr:hover {
+  background: var(--m3-surface-container-low) !important;
+}
+
+/* ── Badges / chips ── */
+.admin-badge,
+.sd-badge {
+  border-radius: var(--m3-shape-full) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+}
+
+/* ── Alertas ── */
+.admin-alert {
+  border-radius: var(--m3-shape-lg) !important;
+  border: 1px solid var(--m3-outline);
+}
+
+.admin-alert--error {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.alert-box.primary-alert .alert {
+  border-radius: var(--m3-shape-lg) !important;
+  background: var(--m3-primary-container) !important;
+  border-left: 4px solid var(--m3-primary) !important;
+}
+
+/* ── Modales ── */
+.docs-modal,
+.admin-modal .modal-content {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline) !important;
+  box-shadow: var(--m3-elevation-3) !important;
+}
+
+.docs-modal-overlay {
+  background: rgba(15, 23, 42, 0.32) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Dropdowns header / perfil ── */
+.header .header-right .dropdown-menu,
+.header .profile-box .dropdown-menu {
+  border-radius: var(--m3-shape-lg) !important;
+  border: 1px solid var(--m3-outline) !important;
+  box-shadow: var(--m3-elevation-3) !important;
+  padding: 8px !important;
+}
+
+.header .profile-box .dropdown-menu li a,
+.header .profile-box .dropdown-menu .dropdown-item-btn {
+  border-radius: var(--m3-shape-md) !important;
+}
+
+/* ── Icon cards dashboard ── */
+.icon-card {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline) !important;
+  box-shadow: var(--m3-elevation-1) !important;
+  transition:
+    box-shadow var(--m3-duration-medium) var(--m3-motion-standard),
+    transform var(--m3-duration-medium) var(--m3-motion-standard);
+}
+
+.icon-card:hover {
+  box-shadow: var(--m3-elevation-2) !important;
+  transform: translateY(-2px);
+}
+
+.icon-card .icon {
+  border-radius: var(--m3-shape-lg) !important;
+}
+
+/* ── Footer ── */
+.main-wrapper .footer {
+  border-top: 1px solid var(--m3-outline);
+  background: var(--m3-surface-container-lowest);
+}
+
+/* ── Toolbars de módulos ── */
+.sd-toolbar,
+.admin-toolbar,
+.announcements-toolbar {
+  border-radius: var(--m3-shape-xl) !important;
+}
+
+/* ── Métricas service desk ── */
+.sd-metric-card {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline);
+  transition:
+    box-shadow var(--m3-duration-medium) var(--m3-motion-standard),
+    transform var(--m3-duration-medium) var(--m3-motion-standard);
+}
+
+.sd-metric-card:hover {
+  box-shadow: var(--m3-elevation-2);
+  transform: translateY(-2px);
+}
+
+/* ── Comunicados ── */
+.announcement-card {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline) !important;
+}
+
+.announcement-card:hover {
+  box-shadow: var(--m3-elevation-2) !important;
+  transform: translateY(-2px);
+}
+
+.announcement-card__body {
+  padding: 20px 22px !important;
+}
+
+/* ── Chat tickets ── */
+.sd-chat {
+  border-radius: var(--m3-shape-xl) !important;
+  background: var(--m3-surface-container-low) !important;
+  border: 1px solid var(--m3-outline);
+}
+
+.sd-chat__original,
+.sd-chat__bubble--other {
+  border-radius: var(--m3-shape-lg) !important;
+}
+
+.sd-chat__bubble--own {
+  border-radius: var(--m3-shape-lg) !important;
+  border-bottom-right-radius: var(--m3-shape-xs) !important;
+}
+
+.sd-compose {
+  border-radius: var(--m3-shape-xl) !important;
+}
+
+.sd-side-panel {
+  border-radius: var(--m3-shape-xl) !important;
+}
+
+/* ── Directorio ── */
+.directory-card {
+  border-radius: var(--m3-shape-xl) !important;
+  border: 1px solid var(--m3-outline) !important;
+  transition:
+    box-shadow var(--m3-duration-medium) var(--m3-motion-standard),
+    transform var(--m3-duration-medium) var(--m3-motion-standard);
+}
+
+.directory-card:hover {
+  box-shadow: var(--m3-elevation-2);
+  transform: translateY(-2px);
+}
+
+/* ── Paginación ── */
+.admin-pagination button {
+  border-radius: var(--m3-shape-full) !important;
+}
+
+/* ── Utilidades de espaciado M3 ── */
+.mb-30 {
+  margin-bottom: 28px !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+/* ── Transición de página ── */
+.intranet-page-transition {
+  animation: m3-page-enter var(--m3-duration-long) var(--m3-motion-emphasized);
+}
+
+@keyframes m3-page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

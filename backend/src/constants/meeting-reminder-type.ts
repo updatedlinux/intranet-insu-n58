@@ -1,0 +1,12 @@
+export const MEETING_REMINDER_TYPE = {
+  CREATED: 'CREATED',
+  REMINDER_24H: 'REMINDER_24H',
+  REMINDER_1H: 'REMINDER_1H',
+  CANCELLED: 'CANCELLED',
+  RESCHEDULED: 'RESCHEDULED',
+} as const;
+
+export type MeetingReminderType =
+  (typeof MEETING_REMINDER_TYPE)[keyof typeof MEETING_REMINDER_TYPE];
+
+export const MEETING_REMINDER_TYPES = Object.values(MEETING_REMINDER_TYPE);

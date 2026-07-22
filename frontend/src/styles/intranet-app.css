@@ -1,0 +1,312 @@
+/* Layout interno post-login */
+.insular-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.insular-logo__mark {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.insular-logo__isotype {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.insular-logo--full {
+  justify-content: center;
+}
+
+.insular-logo__image {
+  max-width: min(280px, 100%);
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.insular-logo--theme-light .insular-logo__name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--intranet-navy, #002b4e);
+}
+
+.insular-logo--theme-light .insular-logo__tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.insular-logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.navbar-logo--insular a {
+  text-decoration: none;
+}
+
+.header--insular .header-user-meta__name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.header--insular .header-user-meta__detail {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.header-logout-btn {
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--intranet-navy, #002b4e);
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.header-logout-btn:hover {
+  background: #f9fafb;
+  border-color: var(--intranet-navy, #002b4e);
+}
+
+.auth-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #6b7280;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.auth-loading__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--intranet-navy, #002b4e);
+  border-radius: 50%;
+  animation: intranet-spin 0.8s linear infinite;
+}
+
+@keyframes intranet-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.promo-box .insular-logo__mark {
+  width: 48px;
+  height: 48px;
+}
+
+.dashboard-map-placeholder {
+  background: linear-gradient(135deg, rgba(0, 43, 78, 0.06), rgba(45, 106, 159, 0.12));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-map-placeholder__inner {
+  text-align: center;
+  color: var(--intranet-slate, #5a6e82);
+  padding: 24px;
+}
+
+.dashboard-map-placeholder__inner i {
+  font-size: 2.5rem;
+  color: var(--intranet-navy, #002b4e);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.dashboard-map-placeholder__inner p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Saludo en header */
+.header-welcome-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: var(--m3-shape-md, 16px);
+  background: var(--m3-primary-container, rgba(0, 43, 78, 0.08));
+  color: var(--intranet-navy, #002b4e);
+  flex-shrink: 0;
+}
+
+.welcome-message h1 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--intranet-navy, #002b4e);
+}
+
+/* Menú de perfil en header */
+.header .profile-box .dropdown-menu {
+  min-width: 280px !important;
+  width: max-content !important;
+  max-width: min(320px, calc(100vw - 24px));
+  overflow: hidden;
+  z-index: 1050;
+}
+
+.header .profile-box .dropdown-menu .author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px !important;
+  overflow: hidden;
+}
+
+.header .profile-box .dropdown-menu .author-info .content {
+  flex: 1;
+  min-width: 0;
+  padding-left: 0 !important;
+}
+
+.header .profile-box .dropdown-menu .author-info .content h4 {
+  margin: 0 0 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header .profile-box .dropdown-menu .author-info .content span {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #6b7280;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Avatar en header: tamaños fijos (evita que la foto a tamaño real cubra el menú) */
+.header .profile-box .profile-info .info .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.header .profile-box .dropdown-menu .author-info .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.header .profile-box .profile-info .info .image .user-avatar,
+.header .profile-box .profile-info .info .image .user-avatar--img {
+  width: 46px !important;
+  height: 46px !important;
+  max-width: 46px !important;
+  max-height: 46px !important;
+  object-fit: cover;
+  border: none;
+}
+
+.header .profile-box .dropdown-menu .author-info .image .user-avatar,
+.header .profile-box .dropdown-menu .author-info .image .user-avatar--img {
+  width: 40px !important;
+  height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  object-fit: cover;
+  border: none;
+}
+
+.header .profile-box .profile-info .info > div:last-child {
+  min-width: 0;
+  max-width: 140px;
+}
+
+.header .profile-box .profile-info .info h6 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header .profile-box .profile-info .info p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-box .dropdown-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.profile-box .dropdown-item-btn:hover {
+  background: #f3f4f6;
+}
+
+.alert-box.primary-alert .alert {
+  background: rgba(0, 43, 78, 0.08);
+  border-left: 4px solid var(--intranet-navy, #002b4e);
+  padding: 16px 20px;
+  border-radius: 8px;
+}
+
+/* ── Escala tipográfica global (+6.25%) — todo excepto sidebar ── */
+html {
+  font-size: 106.25%;
+}
+
+.main-wrapper {
+  line-height: 1.55;
+}
+
+.main-wrapper .text-gray,
+.main-wrapper .text-muted {
+  font-size: 0.9375rem;
+}

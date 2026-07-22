@@ -1,0 +1,39 @@
+---
+description: Contexto dual GitLab (Nomad) vs GitHub (Docker Compose) y ramas QA
+alwaysApply: true
+---
+
+# Contexto de repositorio (GitLab vs GitHub)
+
+Antes de cambiar despliegue, CI o infraestructura, identifica **en qué git** estamos. El usuario puede indicarlo explícitamente ("estamos en GitHub", "rama N58-qa", "GitLab/Nomad") o se infiere del remote/`pwd`.
+
+## Cómo detectar el contexto
+
+1. **Indicación del usuario** (prioridad máxima): respeta frases como "GitHub", "intranet-insu-n58", "insular-qa", "N58-qa", "GitLab", "devtechspace", "Nomad".
+2. **Remote git** (`git remote -v`):
+   - `github.com:updatedlinux/intranet-insu-n58` → contexto **GitHub / Compose**
+   - `gitlab.devtechspace.com:.../insular-intranet` (u otro path Insular en GitLab) → contexto **GitLab / Nomad**
+3. **Ruta del workspace**:
+   - `.../intranet-insu-n58` → GitHub
+   - `.../intranet` (sin `-insu-n58`) con origin GitLab → GitLab
+
+## GitHub — `updatedlinux/intranet-insu-n58`
+
+- Objetivo: stack **Docker Compose** local/QA (SQL Server, MinIO, Redis, API, web).
+- **No** asumir ni modificar el flujo Nomad/GitLab CI como camino principal.
+- Ramas QA: `insular-qa` (cliente Insular) y `N58-qa` (cliente N58). Refactors por cliente van en su rama.
+- Archivos clave: `docker-compose.yml`, `.env.example`, Dockerfiles de `backend/` y `frontend/`.
+- Commits/push van a **GitHub**, no a GitLab.
+
+## GitLab — Insular (devtechspace)
+
+- Objetivo: despliegue **Nomad** + `.gitlab-ci.yml` (registry / pool intranet).
+- Mantener `deploy/job.nomad.hcl`, `deploy/deploy.sh` y CI.
+- **No** reemplazar Nomad por Compose en este remote salvo pedido explícito.
+- Commits/push van a **GitLab**.
+
+## Reglas de seguridad entre tracks
+
+- No mezclar remotes en un mismo push.
+- No borrar el track Nomad del repo GitLab al trabajar Compose en GitHub.
+- Si el contexto es ambiguo, preguntar: ¿GitLab/Nomad o GitHub/Compose?

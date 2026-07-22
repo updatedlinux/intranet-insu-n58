@@ -1,0 +1,25 @@
+/* Ajustes mínimos para la app React (estilos Axero vía index.html) */
+#root {
+  min-height: 100vh;
+}
+
+.not-found {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 3rem;
+  color: var(--intranet-navy, #002b4e);
+  margin: 0;
+}
+
+.not-found p {
+  color: #6b7280;
+  margin: 0 0 16px;
+}

@@ -1,0 +1,289 @@
+/* Login split-screen — corporativo Insular */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+.login-page--loading {
+  align-items: center;
+  justify-content: center;
+  background: var(--m3-surface-dim, #f2f6fa);
+}
+
+.login-muted {
+  color: #6b7280;
+  font-size: 0.9375rem;
+}
+
+/* Panel izquierdo */
+.login-brand {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--intranet-navy, #002b4e);
+  padding: 48px 32px;
+}
+
+.login-brand__inner {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-brand__logo-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.login-brand__tagline {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.login-brand__hint {
+  margin: 20px 0 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+
+/* Panel derecho — formulario */
+.login-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--m3-surface-dim, #f2f6fa);
+  padding: 48px 40px;
+}
+
+.login-form-panel__inner {
+  width: 100%;
+  max-width: 400px;
+  background: var(--m3-surface, #fff);
+  border: 1px solid var(--m3-outline, #e2e8f0);
+  border-radius: var(--m3-shape-xl, 28px);
+  box-shadow: var(--m3-elevation-2, 0 2px 6px rgba(15, 23, 42, 0.06));
+  padding: 36px 32px;
+}
+
+.login-form-panel h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px;
+}
+
+.login-form-panel__hint {
+  font-size: 1.0625rem;
+  color: #4b5563;
+  margin: 0 0 32px;
+  line-height: 1.55;
+}
+
+.login-form-panel__footer {
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: 0.9375rem;
+}
+
+.login-link {
+  color: var(--intranet-navy, #002b4e);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.login-link--inline {
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.login-field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.login-field__label-row label {
+  margin-bottom: 0;
+}
+
+.login-field__label-row + input {
+  margin-top: 0;
+}
+
+.login-success {
+  font-size: 0.875rem;
+  color: #047857;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #ecfdf5;
+  border-radius: var(--m3-shape-md, 16px);
+  border: 1px solid #a7f3d0;
+  line-height: 1.45;
+}
+
+.login-field {
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.9375rem;
+  border: 1px solid var(--m3-outline, #e2e8f0);
+  border-radius: var(--m3-shape-md, 16px);
+  outline: none;
+  transition:
+    border-color 0.15s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1);
+  font-family: inherit;
+  box-sizing: border-box;
+  background: var(--m3-surface-container-low, #f8fafc);
+  color: #111827;
+}
+
+.login-field input::placeholder {
+  color: #9ca3af;
+}
+
+.login-field input:focus {
+  border-color: var(--intranet-navy, #002b4e);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 43, 78, 0.1);
+}
+
+.login-field--password {
+  position: relative;
+}
+
+.login-field--password input {
+  padding-right: 44px;
+}
+
+.login-field__toggle {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-field__toggle:hover {
+  color: #4b5563;
+}
+
+.login-error {
+  font-size: 0.875rem;
+  color: #b91c1c;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border-radius: var(--m3-shape-md, 16px);
+  border: 1px solid #fecaca;
+}
+
+.login-submit {
+  width: 100%;
+  padding: 14px 24px;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--intranet-navy, #002b4e);
+  border: none;
+  border-radius: var(--m3-shape-full, 9999px);
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: var(--m3-elevation-1, 0 1px 2px rgba(15, 23, 42, 0.05));
+  transition:
+    background 0.15s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.login-submit:hover:not(:disabled) {
+  background: #003d6b;
+  box-shadow: var(--m3-elevation-2, 0 2px 6px rgba(15, 23, 42, 0.06));
+  transform: translateY(-1px);
+}
+
+.login-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Logo en panel izquierdo del login */
+.login-brand .insular-logo--full {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-brand .insular-logo__image {
+  width: min(300px, 88%);
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.login-brand .insular-logo--negative .insular-logo__image {
+  width: min(280px, 90%);
+  filter: none;
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-brand {
+    flex: none;
+    padding: 40px 24px;
+  }
+
+  .login-brand__logo-wrap {
+    margin-bottom: 20px;
+  }
+
+  .login-brand__tagline {
+    font-size: 1.25rem;
+  }
+
+  .login-form-panel {
+    padding: 40px 24px;
+  }
+}

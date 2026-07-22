@@ -1,0 +1,199 @@
+# Pipeline CI/CD — solo rama main (producción Nomad dcprod / pool intranet).
+#
+# Whitelist IP (solo prod): TRAEFIK_IP_ALLOWLIST_PROD no vacío → Nomad activa middleware @file.
+#   Las CIDR efectivas viven en Traefik (file): deploy/traefik/dynamic-insular-intranet-ipallowlist.yml
+#   (middleware insular-intranet-prod-ipallowlist). Editar ahí y recargar Traefik.
+#   TRAEFIK_IP_ALLOWLIST_PROD solo actúa como interruptor en CI; vacío explícito = sin filtro IP.
+
+stages:
+  - lint
+  - build
+  - docker
+  - deploy
+
+default:
+  interruptible: true
+
+variables:
+  NODE_IMAGE: node:20-bookworm-slim
+  DOCKER_TLS_CERTDIR: ''
+  NOMAD_JOB_NAME: insular-intranet-prod
+  NOMAD_DATACENTER: dcprod
+  NOMAD_NODE_POOL: intranet
+  TRAEFIK_HOST: intranet.insularcambios.com
+  TRAEFIK_ROUTER: insular-intranet-front-prod
+  INTRANET_NODE_IP: "172.28.163.12"
+  WEB_HTTP_PORT: "8080"
+  TRAEFIK_BACKEND_URL: "http://172.28.163.12:8080"
+  # npm ci puede ir en silencio varios minutos; timeout evita cuelgues eternos por red.
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_fetch_timeout: "300000"
+  npm_config_fetch_retries: "5"
+
+.npm_ci:
+  before_script:
+    - echo "[ci] $(date -Iseconds) npm ci en ${NPM_PROJECT_DIR}…"
+    - (cd "${NPM_PROJECT_DIR}" && npm ci --no-audit --no-fund --loglevel=info)
+    - echo "[ci] $(date -Iseconds) npm ci terminado"
+
+.workflow_main_only:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+# ---------------------------------------------------------------------------
+# Lint
+# ---------------------------------------------------------------------------
+lint:backend:
+  extends: .workflow_main_only
+  stage: lint
+  image: ${NODE_IMAGE}
+  variables:
+    NPM_PROJECT_DIR: backend
+  cache:
+    key:
+      files:
+        - backend/package-lock.json
+    paths:
+      - backend/node_modules/
+  before_script:
+    - !reference [.npm_ci, before_script]
+  script:
+    - cd "${CI_PROJECT_DIR}/${NPM_PROJECT_DIR}"
+    - npm run lint
+    - npm run format:check
+    - npm run typecheck
+
+lint:frontend:
+  extends: .workflow_main_only
+  stage: lint
+  image: ${NODE_IMAGE}
+  variables:
+    NPM_PROJECT_DIR: frontend
+  cache:
+    key:
+      files:
+        - frontend/package-lock.json
+    paths:
+      - frontend/node_modules/
+  before_script:
+    - !reference [.npm_ci, before_script]
+  script:
+    - cd "${CI_PROJECT_DIR}/${NPM_PROJECT_DIR}"
+    - npm run lint
+    - npm run format:check
+    - npm run build
+
+# ---------------------------------------------------------------------------
+# Build (validación compile)
+# ---------------------------------------------------------------------------
+build:backend:
+  extends: .workflow_main_only
+  stage: build
+  image: ${NODE_IMAGE}
+  variables:
+    NPM_PROJECT_DIR: backend
+  cache:
+    key:
+      files:
+        - backend/package-lock.json
+    paths:
+      - backend/node_modules/
+  before_script:
+    - !reference [.npm_ci, before_script]
+  script:
+    - cd "${CI_PROJECT_DIR}/${NPM_PROJECT_DIR}"
+    - npm run build
+
+# ---------------------------------------------------------------------------
+# Docker — imágenes API + front
+# ---------------------------------------------------------------------------
+docker:publish:
+  extends: .workflow_main_only
+  stage: docker
+  image: docker:27-cli
+  services:
+    - name: docker:27-dind
+      alias: docker
+  needs:
+    - lint:backend
+    - lint:frontend
+    - build:backend
+  before_script:
+    - |
+      REGISTRY_HOST="${REGISTRY_URL#https://}"
+      REGISTRY_HOST="${REGISTRY_HOST#http://}"
+      export REGISTRY_HOST
+      export IMAGE_API="${REGISTRY_HOST}/insular/intranet-api:${CI_COMMIT_SHA}"
+      export IMAGE_FRONT="${REGISTRY_HOST}/insular/intranet-front:${CI_COMMIT_SHA}"
+      echo "$REGISTRY_TOKEN" | docker login "$REGISTRY_HOST" -u "$REGISTRY_USER" --password-stdin
+  script:
+    - docker build -t "${IMAGE_API}" -f backend/Dockerfile backend
+    - docker build -t "${IMAGE_FRONT}" -f frontend/Dockerfile frontend
+    - docker push "${IMAGE_API}"
+    - docker push "${IMAGE_FRONT}"
+    - docker tag "${IMAGE_API}" "${REGISTRY_HOST}/insular/intranet-api:latest"
+    - docker tag "${IMAGE_FRONT}" "${REGISTRY_HOST}/insular/intranet-front:latest"
+    - docker push "${REGISTRY_HOST}/insular/intranet-api:latest"
+    - docker push "${REGISTRY_HOST}/insular/intranet-front:latest"
+
+# ---------------------------------------------------------------------------
+# Deploy Nomad (prod)
+# ---------------------------------------------------------------------------
+deploy:nomad-prod:
+  extends: .workflow_main_only
+  stage: deploy
+  # hashicorp/nomad usa ENTRYPOINT ["nomad"]: GitLab ejecutaría `nomad bash …` y falla con exit 127.
+  # Alpine (musl) no ejecuta el binario linux_amd64 de Nomad (glibc) → "nomad: not found".
+  image: debian:bookworm-slim
+  needs:
+    - docker:publish
+  variables:
+    NOMAD_VERSION: "1.11.3"
+    NOMAD_ADDR: ${NOMAD_ADDR_PROD}
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends bash ca-certificates curl unzip
+    - curl -fsSLo /tmp/nomad.zip "https://devtools.devtechspace.com/nomad_${NOMAD_VERSION}_linux_amd64.zip"
+    - unzip -o /tmp/nomad.zip -d /usr/local/bin
+    - chmod +x /usr/local/bin/nomad
+    - nomad version
+    - chmod +x deploy/deploy.sh
+    - |
+      REGISTRY_HOST="${REGISTRY_URL#https://}"
+      REGISTRY_HOST="${REGISTRY_HOST#http://}"
+      export IMAGE_API="${REGISTRY_HOST}/insular/intranet-api:${CI_COMMIT_SHA}"
+      export IMAGE_FRONT="${REGISTRY_HOST}/insular/intranet-front:${CI_COMMIT_SHA}"
+      PROD_ENV_DEST="${CI_PROJECT_DIR}/.prod.env"
+      if [ -n "${PROD_ENV_FILE:-}" ] && [ -f "${PROD_ENV_FILE}" ]; then
+        # Tipo File: GitLab expone un path temporal (recomendado con executor docker).
+        cp "${PROD_ENV_FILE}" "${PROD_ENV_DEST}"
+      elif [ -n "${PROD_ENV_FILE:-}" ]; then
+        # Tipo Variable (texto): el valor es el .env completo, no un path.
+        printf '%s\n' "${PROD_ENV_FILE}" > "${PROD_ENV_DEST}"
+      else
+        echo "PROD_ENV_FILE no llegó al job (vacía en el contenedor)." >&2
+        echo "  → Verificar tipo File en Settings → CI/CD → Variables (recomendado)." >&2
+        echo "  → Si es Variable de texto, el executor docker puede truncar valores largos;" >&2
+        echo "    en ese caso recrearla como File." >&2
+        echo "  → Protected + rama no protegida, o environment scope distinto de production/*." >&2
+        exit 1
+      fi
+      if [ ! -s "${PROD_ENV_DEST}" ]; then
+        echo "El .env de producción quedó vacío tras resolver PROD_ENV_FILE." >&2
+        exit 1
+      fi
+      echo "[deploy] .prod.env preparado ($(wc -l < "${PROD_ENV_DEST}") líneas)"
+  script:
+    - export NOMAD_ADDR="${NOMAD_ADDR_PROD}"
+    - export REGISTRY_USER REGISTRY_TOKEN
+    - export TRAEFIK_IP_ALLOWLIST="${TRAEFIK_IP_ALLOWLIST_PROD-62.169.20.137/32,10.100.201.2/32,190.153.120.159/32,200.74.192.224/29,186.24.17.250/32,190.202.12.12/30,186.24.17.248/29}"
+    - |
+      bash deploy/deploy.sh \
+        --env-file "${CI_PROJECT_DIR}/.prod.env" \
+        --api-image "${IMAGE_API}" \
+        --front-image "${IMAGE_FRONT}" \
+        --job-name "${NOMAD_JOB_NAME}" \
+        --datacenter "${NOMAD_DATACENTER}"
+  environment:
+    name: production
+    url: https://intranet.insularcambios.com

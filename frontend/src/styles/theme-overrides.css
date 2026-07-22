@@ -1,0 +1,155 @@
+/* Paleta corporativa — tokens extendidos en material-expressive.css */
+:root {
+  --intranet-navy: #002b4e;
+  --intranet-navy-hover: #003d6b;
+  --intranet-navy-muted: #1e5a8a;
+  --intranet-slate: #5a6e82;
+  --intranet-slate-hover: #4a5d70;
+  --intranet-chart: #2d6a9f;
+  --intranet-chart-accent: #4a8bc4;
+}
+
+/* Botones y acentos principales */
+.primary-btn,
+.primary-btn.btn-hover,
+.menu-toggle-btn .main-btn.primary-btn {
+  background: var(--intranet-navy) !important;
+  border-color: var(--intranet-navy) !important;
+}
+
+.primary-btn:hover,
+.primary-btn.btn-hover:hover {
+  background: var(--intranet-navy-hover) !important;
+}
+
+.primary-btn-outline {
+  color: var(--intranet-navy) !important;
+  border-color: var(--intranet-navy) !important;
+}
+
+.primary-btn-outline:hover {
+  background: var(--intranet-navy) !important;
+}
+
+.primary-btn-light {
+  background: rgba(0, 43, 78, 0.12) !important;
+  color: var(--intranet-navy) !important;
+}
+
+.text-primary,
+a.text-primary {
+  color: var(--intranet-navy) !important;
+}
+
+.primary-bg,
+.bg-primary {
+  background-color: var(--intranet-navy) !important;
+}
+
+.promo-box .main-btn.primary-btn {
+  background: var(--intranet-navy) !important;
+}
+
+/* ── Hover legible en botones (Axero fuerza a:hover { color: navy } en todos los <a>) ── */
+a.admin-btn--primary,
+a.admin-btn--primary:hover,
+a.admin-btn--primary:focus,
+a.admin-btn--primary:active,
+button.admin-btn--primary:hover:not(:disabled),
+.admin-btn--primary:hover:not(:disabled),
+a.docs-sp-btn--primary,
+a.docs-sp-btn--primary:hover,
+a.docs-sp-btn--primary:focus,
+.docs-sp-btn--primary:hover:not(:disabled) {
+  color: #fff !important;
+}
+
+a.admin-btn--danger,
+a.admin-btn--danger:hover,
+.admin-btn--danger:hover:not(:disabled) {
+  color: #fff !important;
+}
+
+a.main-btn.primary-btn,
+a.main-btn.primary-btn:hover,
+a.main-btn.primary-btn:focus,
+.main-btn.primary-btn:hover {
+  color: #fff !important;
+}
+
+a.admin-btn--ghost:hover:not(:disabled),
+.admin-btn--ghost:hover:not(:disabled),
+a.docs-sp-btn--secondary:hover:not(:disabled),
+.docs-sp-btn--secondary:hover:not(:disabled) {
+  color: var(--intranet-navy) !important;
+}
+
+.admin-link {
+  color: var(--intranet-navy);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  color: var(--intranet-navy-hover);
+  text-decoration: underline;
+}
+
+/* Tarjetas de iconos — la clase "purple" pasa a azul corporativo */
+.icon-card .icon.purple {
+  background: rgba(0, 43, 78, 0.12) !important;
+  color: var(--intranet-navy) !important;
+}
+
+.icon-card .icon.primary {
+  background: rgba(0, 43, 78, 0.15) !important;
+  color: var(--intranet-navy) !important;
+}
+
+/* Formularios y enlaces */
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+  border-color: var(--intranet-navy) !important;
+}
+
+.form-check-input:checked {
+  background-color: var(--intranet-navy) !important;
+  border-color: var(--intranet-navy) !important;
+}
+
+/* Calendario */
+.fc .fc-button-primary {
+  background-color: var(--intranet-navy) !important;
+  border-color: var(--intranet-navy) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  background: var(--intranet-navy) !important;
+}
+
+/* Footer / enlaces hover */
+.footer a:hover,
+.copyright a:hover {
+  color: var(--intranet-navy) !important;
+}
+
+/* Reemplazo global de hex morados residuales en estilos compilados */
+.header-search form input:focus {
+  border-color: var(--intranet-navy) !important;
+}
+
+/* Gráficos y acentos del template Axero */
+.legend3 .blue-bg {
+  background-color: var(--intranet-chart, #2d6a9f) !important;
+}
+
+.quick-access .icon-box {
+  color: var(--intranet-navy) !important;
+}
+
+.feedback-btn {
+  background: var(--intranet-navy) !important;
+  border-color: var(--intranet-navy) !important;
+}

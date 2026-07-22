@@ -1,0 +1,36 @@
+# Traefik v3 — file provider. Cargar en el directorio dinámico de Traefik (p. ej. /etc/traefik/dynamic/).
+#
+# Motivo: con varias réplicas Nomad, NO definir ipAllowList en etiquetas del servicio Nomad:
+# Traefik recibe el mismo middleware varias veces y falla ("defined multiple times with different configurations").
+# Aquí el middleware existe una sola vez; Nomad solo referencia: ...@file
+#
+# Solo producción (intranet.insularcambios.com). Mantener sourceRange alineado con la política deseada
+# (histórico también en TRAEFIK_IP_ALLOWLIST_PROD en GitLab; la variable CI solo actúa como interruptor).
+# Página 403: custom-errors apunta al contenedor traefik-custom-errors (nginx en docker-compose de Traefik).
+# Tras editar CIDR: Traefik suele recargar solo; si no, reinicio suave del servicio Traefik.
+
+http:
+  middlewares:
+    insular-intranet-prod-custom-error-page:
+      errors:
+        status:
+          - "403"
+        service: custom-errors
+        query: "/403.html"
+
+    insular-intranet-prod-ipallowlist:
+      ipAllowList:
+        sourceRange:
+          - "62.169.20.137/32"
+          - "10.100.201.2/32"
+          - "190.153.120.159/32"
+          - "200.74.192.224/29"
+          - "186.24.17.250/32"
+          - "190.202.12.12/30"
+          - "186.24.17.248/29"
+
+  services:
+    custom-errors:
+      loadBalancer:
+        servers:
+          - url: "http://traefik-custom-errors:80"

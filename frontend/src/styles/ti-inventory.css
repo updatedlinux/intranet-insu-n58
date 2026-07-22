@@ -1,0 +1,259 @@
+.ti-inv-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.ti-inv-card {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ti-inv-card--alert {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.ti-inv-card__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.35rem;
+}
+
+.ti-inv-card__value {
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.ti-inv-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.ti-inv-split--with-panel {
+  grid-template-columns: 1fr 360px;
+}
+
+@media (max-width: 1100px) {
+  .ti-inv-split--with-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ti-inv-table-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.ti-inv-table-card .req-table {
+  width: 100%;
+}
+
+/* Modal inventario (activos / consumibles) */
+.admin-modal.ti-inv-create-modal {
+  width: 100%;
+  max-width: 660px;
+  padding: 1.5rem 1.75rem 1.75rem;
+}
+
+.ti-inv-create-modal .req-create-modal__title {
+  font-size: 1.5rem;
+}
+
+.ti-inv-create-modal .admin-form__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.ti-inv-create-modal .admin-form__input,
+.ti-inv-create-modal select,
+.ti-inv-create-modal .ti-inv-photo-field__input {
+  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.ti-inv-create-modal .admin-btn {
+  font-size: 1rem;
+}
+
+.ti-inv-create-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.ti-inv-panel {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.ti-inv-row--selected {
+  background: #eff6ff;
+}
+
+.ti-inv-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.ti-inv-filters__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  grid-column: 1 / -1;
+  margin-top: 0.25rem;
+}
+
+.ti-inv-filters__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.ti-inv-group-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 1.25rem 0 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ti-inv-group-title:first-child {
+  margin-top: 0;
+}
+
+.ti-inv-photo {
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.ti-inv-photo--placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  background: #f3f4f6;
+}
+
+.ti-inv-photo-field {
+  margin-bottom: 1rem;
+}
+
+.ti-inv-photo-field__preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.ti-inv-photo-field__input {
+  font-size: 0.875rem;
+}
+
+.ti-inv-detail-photo {
+  margin: 0.75rem 0 1rem;
+}
+
+.ti-inv-table-name {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.ti-inv-mini-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.ti-inv-stock-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ti-inv-ticket-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ti-inv-ticket-section {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.ti-inv-ticket-section__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ti-inv-ticket-section__body {
+  padding: 0 1rem 1rem;
+}
+
+.ti-inv-ticket-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ti-inv-ticket-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ti-inv-ticket-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.ti-inv-ticket-list__meta {
+  display: block;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.ti-inv-ticket-form {
+  padding: 1rem;
+}
+
+.admin-btn--sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.ml-10 {
+  margin-left: 0.5rem;
+}

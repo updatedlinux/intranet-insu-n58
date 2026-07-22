@@ -1,0 +1,424 @@
+/* ── Grupo de acciones del header ── */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.header-actions .profile-box {
+  margin-left: 6px !important;
+}
+
+.header-actions .profile-box > button.dropdown-toggle {
+  width: auto !important;
+  height: auto !important;
+  min-height: unset !important;
+  min-width: unset !important;
+  padding: 4px 6px 4px 4px !important;
+  border-radius: 10px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+}
+
+.header-actions .profile-box > button.dropdown-toggle:hover {
+  background: #f8fafc !important;
+  border-color: #eef2f6 !important;
+}
+
+/* ── Botón circular del header (campana, mensajes) ── */
+.header .header-right .header-icon-btn {
+  flex-shrink: 0;
+  border: 1px solid var(--m3-outline, #e2e8f0);
+  background: var(--m3-surface-container-low, #f8fafc);
+  border-radius: var(--m3-shape-full, 9999px);
+  height: 44px;
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #334155;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.header .header-right .header-icon-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #002b4e;
+}
+
+.header .header-right .header-icon-btn svg {
+  fill: none !important;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
+.header .header-right .header-icon-btn::after {
+  display: none !important;
+}
+
+/* Evita el punto rojo genérico de Axero en spans dentro del botón */
+.header .header-right .header-icon-btn > span:not(.intranet-notifications__badge) {
+  display: none !important;
+}
+
+/* Badge numérico en campana */
+.header .header-right .header-icon-btn > .intranet-notifications__badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #dc2626;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  pointer-events: none;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.intranet-notifications {
+  position: relative;
+}
+
+.intranet-notifications.is-open .intranet-notifications__trigger {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #002b4e;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Backdrop del panel */
+.intranet-notifications__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1090;
+  background: rgba(15, 23, 42, 0.08);
+  animation: intranet-notifications-fade-in 0.15s ease-out;
+}
+
+@keyframes intranet-notifications-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intranet-notifications-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Panel en portal (sin herencia Axero del header) */
+.intranet-notifications__panel {
+  position: fixed;
+  z-index: 1100;
+  width: min(420px, calc(100vw - 24px));
+  max-height: min(520px, calc(100vh - 96px));
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow:
+    0 8px 16px -4px rgba(15, 23, 42, 0.08),
+    0 24px 48px -12px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  animation: intranet-notifications-slide-in 0.18s ease-out;
+}
+
+.intranet-notifications__panel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  background: #fafbfc;
+  border-top: 1px solid #e2e8f0;
+  border-left: 1px solid #e2e8f0;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.intranet-notifications__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 18px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fafbfc;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.intranet-notifications__heading {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.intranet-notifications__subtitle {
+  margin: 3px 0 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+.intranet-notifications__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.intranet-notifications__mark-all {
+  border: none;
+  background: none;
+  color: #002b4e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 7px 10px;
+  border-radius: 8px;
+  line-height: 1.2;
+  white-space: nowrap;
+  width: auto !important;
+  height: auto !important;
+  min-height: unset !important;
+}
+
+.intranet-notifications__mark-all:hover {
+  background: #e0f2fe;
+}
+
+.intranet-notifications__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.intranet-notifications__close:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a;
+}
+
+.intranet-notifications__close svg {
+  fill: none !important;
+  stroke: currentColor;
+}
+
+.intranet-notifications__list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.intranet-notifications__list > li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.intranet-notifications__list > li + li {
+  margin-top: 4px;
+}
+
+.intranet-notifications__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.intranet-notifications__empty svg {
+  opacity: 0.4;
+  fill: none !important;
+  stroke: currentColor;
+}
+
+.intranet-notifications__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 12px 12px 14px;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.intranet-notifications__item:hover,
+.intranet-notifications__item:focus-visible {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.intranet-notifications__item.is-unread {
+  background: #f0f7ff;
+  border-color: #dbeafe;
+}
+
+.intranet-notifications__item.is-unread:hover,
+.intranet-notifications__item.is-unread:focus-visible {
+  background: #e8f2ff;
+  border-color: #bfdbfe;
+}
+
+.intranet-notifications__unread-dot {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2563eb;
+  flex-shrink: 0;
+}
+
+.intranet-notifications__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: rgba(0, 43, 78, 0.08);
+  color: #002b4e;
+}
+
+.intranet-notifications__icon svg {
+  fill: none !important;
+  stroke: currentColor;
+}
+
+.intranet-notifications__item[data-type='TICKET_CREATED'] .intranet-notifications__icon,
+.intranet-notifications__item[data-type='TICKET_COMMENT'] .intranet-notifications__icon,
+.intranet-notifications__item[data-type='TICKET_ASSIGNED'] .intranet-notifications__icon {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.intranet-notifications__item[data-type='TICKET_RESOLVED'] .intranet-notifications__icon {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.intranet-notifications__item[data-type='ANNOUNCEMENT'] .intranet-notifications__icon {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.intranet-notifications__item[data-type='DOCUMENT_PENDING'] .intranet-notifications__icon {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.intranet-notifications__item[data-type='DOCUMENT_APPROVED'] .intranet-notifications__icon {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.intranet-notifications__item[data-type='DOCUMENT_REJECTED'] .intranet-notifications__icon {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.intranet-notifications__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+  padding-top: 2px;
+}
+
+.intranet-notifications__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.intranet-notifications__item.is-unread .intranet-notifications__title {
+  color: #002b4e;
+}
+
+.intranet-notifications__message {
+  font-size: 0.8125rem;
+  color: #64748b;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.intranet-notifications__time {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.3;
+  margin-top: 1px;
+}

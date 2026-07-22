@@ -1,0 +1,283 @@
+/* Gestión Insular Learning — estilo alineado con Reuniones */
+
+.learning-manage-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.learning-manage-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.learning-manage-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.learning-manage-tabs__btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.learning-manage-tabs__btn:hover {
+  color: #1e293b;
+}
+
+.learning-manage-tabs__btn.is-active {
+  background: #fff;
+  color: var(--intranet-navy, #002b4e);
+  box-shadow: 0 1px 3px rgba(0, 43, 78, 0.1);
+}
+
+.learning-manage-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: #64748b;
+}
+
+.learning-manage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.learning-manage-list__item {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.learning-manage-list__item:last-child {
+  border-bottom: none;
+}
+
+.learning-manage-list__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.learning-manage-list__main {
+  flex: 1;
+  min-width: 200px;
+}
+
+.learning-manage-list__code {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.learning-manage-list__title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--intranet-navy, #002b4e);
+}
+
+.learning-manage-list__meta {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+.learning-manage-list__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.learning-manage-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.learning-manage-badge--published {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.learning-manage-badge--draft {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.learning-manage-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.learning-manage-subnav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748b;
+  text-decoration: none;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.learning-manage-subnav__link:hover {
+  color: var(--intranet-navy, #002b4e);
+  background: #fff;
+  border-color: #cbd5e1;
+}
+
+.learning-manage-subnav__link.is-active {
+  color: var(--intranet-navy, #002b4e);
+  background: #fff;
+  border-color: #94a3b8;
+  box-shadow: 0 1px 2px rgba(0, 43, 78, 0.06);
+}
+
+.learning-manage-form.card-style {
+  padding: 24px;
+}
+
+.learning-manage-form .form-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.learning-manage-module.card-style {
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.learning-manage-module__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.learning-manage-module__body {
+  padding: 20px;
+}
+
+.learning-manage-report-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.8fr 1.2fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.learning-manage-report-row:last-child {
+  border-bottom: none;
+}
+
+.learning-manage-report-head {
+  padding: 12px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.8fr 1.2fr 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 992px) {
+  .learning-manage-report-head {
+    display: none;
+  }
+
+  .learning-manage-report-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* Toolbars admin alineados con gestión learning */
+.admin-toolbar.card-style {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.admin-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-data-library__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-data-library__actions .admin-btn,
+.admin-data-library__actions a.admin-btn {
+  text-decoration: none;
+}
+
+/* Empty states unificados en listados admin */
+.admin-data-list__empty.learning-manage-empty,
+.admin-data-list__body > .learning-manage-empty {
+  border: none;
+}
+
+.admin-table-empty {
+  padding: 48px 24px !important;
+  text-align: center;
+  color: #64748b;
+}
