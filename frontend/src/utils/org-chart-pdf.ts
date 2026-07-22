@@ -34,7 +34,7 @@ function waitForPaint(): Promise<void> {
 
 export async function downloadOrgChartPdf(
   nodes: OrgChartNode[],
-  filename = 'organigrama-insular.pdf',
+  filename = 'organigrama-n58.pdf',
 ): Promise<void> {
   if (nodes.length === 0) return;
 

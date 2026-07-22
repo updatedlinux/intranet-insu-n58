@@ -66,7 +66,7 @@ export function OrgChartModal({ open, tree, totalAreas, highlightAreaId, onClose
               Organigrama estructural
             </h2>
             <p className="org-chart-modal__subtitle">
-              Casa de Cambios Insular, S.A. —{' '}
+              N58 Banco Digital —{' '}
               {totalAreas === 1 ? '1 área activa' : `${totalAreas} áreas activas`}
             </p>
           </div>

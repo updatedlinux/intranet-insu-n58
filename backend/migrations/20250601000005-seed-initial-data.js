@@ -69,7 +69,7 @@ exports.up = async function (db) {
     )
     VALUES (
       N'Administrador',
-      N'Insular',
+      N'N58',
       N'${ADMIN_EMAIL}',
       N'${escapedHash}',
       @roleId,

@@ -25,7 +25,7 @@ export function canViewActivityMetrics(user: {
   return isAreaLeader(user) || isAdminRole(user.role.name);
 }
 
-/** Administradores y líderes de área pueden gestionar Insular Learning. */
+/** Administradores y líderes de área pueden gestionar N58 Learning. */
 export function canManageLearning(user: {
   role: { name: string };
   position: { isLeader?: boolean };

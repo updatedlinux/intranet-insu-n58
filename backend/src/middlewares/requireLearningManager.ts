@@ -11,7 +11,7 @@ export function requireLearningManager(req: Request, _res: Response, next: NextF
   }
 
   if (!canManageLearning(req.user)) {
-    const error = new Error('No tiene permisos para gestionar Insular Learning') as AppError;
+    const error = new Error('No tiene permisos para gestionar N58 Learning') as AppError;
     error.statusCode = 403;
     next(error);
     return;

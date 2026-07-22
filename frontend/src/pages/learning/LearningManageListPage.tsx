@@ -41,8 +41,8 @@ export function LearningManageListPage() {
   return (
     <>
       <PageHeader
-        title="Gestión Insular Learning"
-        breadcrumbParent="Insular Learning"
+        title="Gestión N58 Learning"
+        breadcrumbParent="N58 Learning"
         breadcrumbCurrent="Gestión de cursos"
         breadcrumbParentHref="/learning"
       />

@@ -258,7 +258,7 @@ function buildResetSql(passwordHashEscaped) {
       isActive, mustChangePassword, createdBy
     )
     VALUES (
-      N'Administrador', N'Insular', N'${adminEmail}', N'${passwordHashEscaped}',
+      N'Administrador', N'N58', N'${adminEmail}', N'${passwordHashEscaped}',
       @roleId, @areaId, @positionId,
       1, 1, NULL
     );

@@ -3,15 +3,16 @@ import { join } from 'node:path';
 import { config } from '../config';
 import { mailer } from '../config/mailer';
 
-const BRAND = 'Insular Cambios';
-const BRAND_COLOR = '#002b4e';
+const BRAND = 'N58 Banco Digital';
+const BRAND_COLOR = '#4F2D63';
 /** Content-ID del logo embebido (cid:) — compatible con Gmail, Outlook, YOPmail, etc. */
-const EMAIL_LOGO_CID = 'insular-logo@insularcambios';
+const EMAIL_LOGO_CID = 'n58-logo@n58bancodigital';
 
 function loadEmailLogoPath(): string {
   const candidates = [
+    join(process.cwd(), 'assets', 'N58-negative.png'),
+    join(process.cwd(), '..', 'frontend', 'public', 'N58-negative.png'),
     join(process.cwd(), 'assets', 'insular-negative.png'),
-    join(process.cwd(), '..', 'frontend', 'public', 'insular-negative.png'),
   ];
 
   for (const filePath of candidates) {
@@ -23,7 +24,7 @@ function loadEmailLogoPath(): string {
     }
   }
 
-  console.warn('[email] Logo insular-negative.png no encontrado; se usará encabezado solo texto');
+  console.warn('[email] Logo N58-negative.png no encontrado; se usará encabezado solo texto');
   return '';
 }
 
@@ -37,7 +38,7 @@ function emailLogoAttachments(): Array<{
   if (!EMAIL_LOGO_PATH) return [];
   return [
     {
-      filename: 'insular-negative.png',
+      filename: 'N58-negative.png',
       path: EMAIL_LOGO_PATH,
       cid: EMAIL_LOGO_CID,
     },

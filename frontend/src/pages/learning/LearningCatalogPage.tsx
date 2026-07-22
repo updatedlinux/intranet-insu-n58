@@ -36,8 +36,8 @@ export function LearningCatalogPage() {
   return (
     <>
       <PageHeader
-        title="Insular Learning"
-        breadcrumbParent="Insular Learning"
+        title="N58 Learning"
+        breadcrumbParent="N58 Learning"
         breadcrumbCurrent="Mis cursos"
         breadcrumbParentHref="/learning"
       />

@@ -127,7 +127,7 @@ function buildLearningMenu(canManage: boolean): NavMenuItem {
   }
   return {
     id: 'learning-menu',
-    label: 'Insular Learning',
+    label: 'N58 Learning',
     icon: GraduationCap,
     children,
   };

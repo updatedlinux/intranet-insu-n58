@@ -222,4 +222,4 @@ cd ../frontend && npm run lint && npm run format:check
 
 ## Licencia
 
-Uso interno — Insular.
+Uso interno — N58 Banco Digital.

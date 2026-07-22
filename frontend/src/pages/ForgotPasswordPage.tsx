@@ -51,7 +51,7 @@ export function ForgotPasswordPage() {
                 id="forgot-email"
                 type="email"
                 autoComplete="email"
-                placeholder="correo@insularcambios.com"
+                placeholder="correo@n58bancodigital.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

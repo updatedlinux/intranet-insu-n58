@@ -126,7 +126,7 @@ export function LearningCoursePage() {
     <>
       <PageHeader
         title={title || 'Curso'}
-        breadcrumbParent="Insular Learning"
+        breadcrumbParent="N58 Learning"
         breadcrumbCurrent={code || 'Curso'}
         breadcrumbParentHref="/learning"
       />

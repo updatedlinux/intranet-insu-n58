@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Smoke E2E Insular Learning — gobernanza, subida a MinIO, streaming y progreso.
+ * Smoke E2E N58 Learning — gobernanza, subida a MinIO, streaming y progreso.
  *
  * Uso: npm run smoke:learning
  * Requiere: API en marcha, migración 20250601000030, MinIO accesible.
@@ -272,7 +272,7 @@ async function uploadCover(courseId) {
 }
 
 async function main() {
-  console.log('[smoke-learning] Iniciando E2E Insular Learning…');
+  console.log('[smoke-learning] Iniciando E2E N58 Learning…');
   console.log(`[smoke-learning] API: ${BASE}`);
 
   console.log('[smoke-learning] 1/12 — Verificar tablas Learning');
@@ -406,11 +406,11 @@ async function main() {
   await api(`/learning/manage/courses/${courseId}`, { method: 'DELETE' });
   console.log(`       Curso #${courseId} eliminado ✓`);
 
-  console.log('\n✅ Smoke test Insular Learning: OK');
+  console.log('\n✅ Smoke test N58 Learning: OK');
 }
 
 main().catch((err) => {
-  console.error('\n❌ Smoke test Insular Learning: FALLÓ');
+  console.error('\n❌ Smoke test N58 Learning: FALLÓ');
   console.error(err.message);
   if (err.data) console.error(JSON.stringify(err.data, null, 2));
   process.exit(1);

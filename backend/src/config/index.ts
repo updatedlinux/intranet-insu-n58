@@ -116,7 +116,7 @@ function smtpHeloName(appUrl: string): string {
   try {
     return new URL(appUrl).hostname;
   } catch {
-    return 'intranet.insularcambios.com';
+    return 'intranet.n58bancodigital.com';
   }
 }
 
@@ -193,7 +193,7 @@ function buildConfig(): AppConfig {
         secure,
         user: optionalEnv('SMTP_USER', ''),
         password: process.env.SMTP_PASSWORD?.trim() || '',
-        fromName: optionalEnv('SMTP_FROM_NAME', 'Insular Cambios'),
+        fromName: optionalEnv('SMTP_FROM_NAME', 'N58 Banco Digital'),
         fromEmail: optionalEnv('SMTP_FROM_EMAIL', ''),
         tlsRejectUnauthorized: parseBoolean('SMTP_TLS_REJECT_UNAUTHORIZED', false),
         ignoreTls: parseBoolean('SMTP_IGNORE_TLS', port === 25 && !secure),
