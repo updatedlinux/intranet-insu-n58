@@ -480,14 +480,14 @@
 }
 
 .docs-sp-btn--primary {
-  background: var(--intranet-navy, #855099);
-  border-color: var(--intranet-navy, #855099);
+  background: var(--intranet-navy, #4F2D63);
+  border-color: var(--intranet-navy, #4F2D63);
   color: #fff;
 }
 
 .docs-sp-btn--primary:hover:not(:disabled) {
-  background: #6f427f;
-  border-color: #6f427f;
+  background: #3D234D;
+  border-color: #3D234D;
   color: #fff;
 }
 

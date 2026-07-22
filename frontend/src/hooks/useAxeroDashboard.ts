@@ -3,8 +3,8 @@ import { Chart, type ChartConfiguration, type ChartItem, registerables } from 'c
 
 Chart.register(...registerables);
 
-const CHART_PRIMARY = '#9a6aad';
-const CHART_PRIMARY_HOVER = '#855099';
+const CHART_PRIMARY = '#6E4A82';
+const CHART_PRIMARY_HOVER = '#4F2D63';
 
 function destroyChart(instance: Chart | null) {
   if (instance) {

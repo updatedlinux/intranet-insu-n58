@@ -12,7 +12,7 @@ export function getInitials(firstName: string, lastName: string): string {
   return `${a}${b}`.toUpperCase() || '?';
 }
 
-const NAVY = 'var(--intranet-navy, #855099)';
+const NAVY = 'var(--intranet-navy, #4F2D63)';
 
 interface UserAvatarProps {
   userId: number;

@@ -1,12 +1,12 @@
 /* Paleta corporativa N58 — tokens extendidos en material-expressive.css */
 :root {
-  --intranet-navy: #855099;
-  --intranet-navy-hover: #6f427f;
-  --intranet-navy-muted: #9a5fad;
+  --intranet-navy: #4F2D63;
+  --intranet-navy-hover: #3D234D;
+  --intranet-navy-muted: #6E4A82;
   --intranet-slate: #6b5f78;
   --intranet-slate-hover: #564c61;
-  --intranet-chart: #9a6aad;
-  --intranet-chart-accent: #b07bc4;
+  --intranet-chart: #6E4A82;
+  --intranet-chart-accent: #8A6A9A;
 }
 
 /* Botones y acentos principales */
@@ -32,7 +32,7 @@
 }
 
 .primary-btn-light {
-  background: rgba(133, 80, 153, 0.12) !important;
+  background: rgba(79, 45, 99, 0.12) !important;
   color: var(--intranet-navy) !important;
 }
 
@@ -97,12 +97,12 @@ a.docs-sp-btn--secondary:hover:not(:disabled),
 
 /* Tarjetas de iconos — acento corporativo N58 */
 .icon-card .icon.purple {
-  background: rgba(133, 80, 153, 0.12) !important;
+  background: rgba(79, 45, 99, 0.12) !important;
   color: var(--intranet-navy) !important;
 }
 
 .icon-card .icon.primary {
-  background: rgba(133, 80, 153, 0.15) !important;
+  background: rgba(79, 45, 99, 0.15) !important;
   color: var(--intranet-navy) !important;
 }
 
@@ -142,7 +142,7 @@ textarea:focus,
 
 /* Gráficos y acentos del template Axero */
 .legend3 .blue-bg {
-  background-color: var(--intranet-chart, #9a6aad) !important;
+  background-color: var(--intranet-chart, #6E4A82) !important;
 }
 
 .quick-access .icon-box {

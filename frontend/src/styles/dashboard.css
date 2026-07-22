@@ -93,7 +93,7 @@
 
 .dashboard-quote--featured {
   background: linear-gradient(135deg, rgba(0, 43, 78, 0.06) 0%, rgba(21, 101, 192, 0.08) 100%);
-  border-left: 4px solid var(--intranet-navy, #855099);
+  border-left: 4px solid var(--intranet-navy, #4F2D63);
   padding: 22px 24px;
 }
 
@@ -110,5 +110,5 @@
 
 .dashboard-quote .author {
   font-weight: 600;
-  color: #855099;
+  color: #4F2D63;
 }

@@ -18,7 +18,7 @@
 .collab-hero__greeting {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--intranet-navy-muted, #9a5fad);
+  color: var(--intranet-navy-muted, #6E4A82);
   margin: 0 0 6px;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .collab-quick-card:hover {
-  border-color: var(--intranet-navy, #855099);
+  border-color: var(--intranet-navy, #4F2D63);
   box-shadow: 0 4px 16px rgba(0, 43, 78, 0.08);
   transform: translateY(-2px);
 }
@@ -93,7 +93,7 @@
   height: 40px;
   border-radius: 10px;
   background: rgba(0, 43, 78, 0.08);
-  color: var(--intranet-navy, #855099);
+  color: var(--intranet-navy, #4F2D63);
 }
 
 .collab-quick-card__label {

@@ -14,7 +14,7 @@
   height: 56px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, #855099 0%, #9a5fad 100%);
+  background: linear-gradient(135deg, #4F2D63 0%, #6E4A82 100%);
   color: #fff;
   box-shadow: 0 8px 24px rgba(21, 101, 192, 0.35);
   display: flex;
@@ -77,7 +77,7 @@
 }
 
 .chat-widget-header {
-  background: linear-gradient(135deg, #855099 0%, #9a5fad 100%);
+  background: linear-gradient(135deg, #4F2D63 0%, #6E4A82 100%);
   color: #fff;
   padding: 20px;
 }
@@ -190,8 +190,8 @@
 }
 
 .chat-tabs__btn.is-active {
-  color: #855099;
-  border-bottom-color: #9a5fad;
+  color: #4F2D63;
+  border-bottom-color: #6E4A82;
 }
 
 .chat-groups-helper {
@@ -282,7 +282,7 @@
   margin: 0;
   font-size: 1.0625em;
   font-weight: 700;
-  color: #855099;
+  color: #4F2D63;
 }
 
 .chat-conv-header__subtitle {
@@ -343,7 +343,7 @@
 
 .chat-input-bar__send {
   border: none;
-  background: #9a5fad;
+  background: #6E4A82;
   color: #fff;
   border-radius: 10px;
   width: 42px;
@@ -364,7 +364,7 @@
 
 .chat-bubble--own {
   align-self: flex-end;
-  background: #9a5fad;
+  background: #6E4A82;
   color: #fff;
   border-bottom-right-radius: 4px;
 }
