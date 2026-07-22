@@ -106,7 +106,7 @@ export const COLLABORATOR_NAV: NavMenuItem[] = [
   },
   {
     id: 'chat',
-    label: 'Chat Insular',
+    label: 'Chat N58',
     icon: MessageCircle,
     path: '/messenger',
     ready: true,
@@ -211,7 +211,7 @@ export const ADMIN_NAV: NavMenuItem[] = [
   },
   {
     id: 'chat',
-    label: 'Chat Insular',
+    label: 'Chat N58',
     icon: MessageCircle,
     path: '/messenger',
     ready: true,

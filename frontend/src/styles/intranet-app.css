@@ -35,7 +35,7 @@
 .insular-logo--theme-light .insular-logo__name {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .insular-logo--theme-light .insular-logo__tag {
@@ -71,7 +71,7 @@
   padding: 8px 16px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -85,7 +85,7 @@
 
 .header-logout-btn:hover {
   background: #f9fafb;
-  border-color: var(--intranet-navy, #002b4e);
+  border-color: var(--intranet-navy, #855099);
 }
 
 .auth-loading {
@@ -103,7 +103,7 @@
   width: 36px;
   height: 36px;
   border: 3px solid #e5e7eb;
-  border-top-color: var(--intranet-navy, #002b4e);
+  border-top-color: var(--intranet-navy, #855099);
   border-radius: 50%;
   animation: intranet-spin 0.8s linear infinite;
 }
@@ -135,7 +135,7 @@
 
 .dashboard-map-placeholder__inner i {
   font-size: 2.5rem;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   display: block;
   margin-bottom: 12px;
 }
@@ -155,14 +155,14 @@
   margin-right: 10px;
   border-radius: var(--m3-shape-md, 16px);
   background: var(--m3-primary-container, rgba(0, 43, 78, 0.08));
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   flex-shrink: 0;
 }
 
 .welcome-message h1 {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 /* Menú de perfil en header */
@@ -292,7 +292,7 @@
 
 .alert-box.primary-alert .alert {
   background: rgba(0, 43, 78, 0.08);
-  border-left: 4px solid var(--intranet-navy, #002b4e);
+  border-left: 4px solid var(--intranet-navy, #855099);
   padding: 16px 20px;
   border-radius: 8px;
 }

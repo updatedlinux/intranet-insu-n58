@@ -43,7 +43,7 @@
 .directory-meta__clear {
   background: none;
   border: none;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   font-size: 0.875rem;
   cursor: pointer;
   text-decoration: underline;
@@ -86,7 +86,7 @@
 }
 
 .directory-card__main:focus-visible {
-  outline: 2px solid var(--intranet-navy, #002b4e);
+  outline: 2px solid var(--intranet-navy, #855099);
   outline-offset: -2px;
 }
 
@@ -102,7 +102,7 @@
   margin: 0;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .directory-card__area {
@@ -212,7 +212,7 @@
 .directory-modal__role {
   margin: 0 0 2px;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   font-size: 0.9375rem;
 }
 
@@ -245,7 +245,7 @@
 }
 
 .directory-modal__details a {
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   word-break: break-all;
 }
 

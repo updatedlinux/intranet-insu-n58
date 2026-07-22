@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { MessageCircle, X } from 'lucide-react';
+import { BRAND_ISOTYPE_SRC, BRAND_NAME } from '../../config/brand';
 import { useChat } from '../../context/ChatContext';
 import { ChatConversation } from './ChatConversation';
 import { ChatRoomListPanel } from './ChatRoomListPanel';
@@ -16,13 +17,17 @@ export function ChatWidget() {
   return (
     <>
       {widgetOpen ? (
-        <div className="chat-widget-panel" role="dialog" aria-label="Chat Insular">
+        <div className="chat-widget-panel" role="dialog" aria-label={`Chat ${BRAND_NAME}`}>
           <div className="chat-widget-header">
             <div className="d-flex justify-content-between align-items-start gap-3">
               <div className="d-flex align-items-center gap-3">
-                <img src="/favicon.svg" alt="Insular" className="chat-widget-header__logo" />
+                <img
+                  src={BRAND_ISOTYPE_SRC}
+                  alt={BRAND_NAME}
+                  className="chat-widget-header__logo"
+                />
                 <div>
-                  <h3>Chat Insular</h3>
+                  <h3>Chat {BRAND_NAME}</h3>
                   <p>Conectado · Mensajes en tiempo real</p>
                 </div>
               </div>

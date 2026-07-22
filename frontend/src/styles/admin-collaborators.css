@@ -46,7 +46,7 @@
 
 .admin-form__input:focus {
   outline: none;
-  border-color: var(--intranet-navy, #002b4e);
+  border-color: var(--intranet-navy, #855099);
   box-shadow: 0 0 0 3px var(--m3-primary-container, rgba(0, 43, 78, 0.1));
 }
 
@@ -105,14 +105,14 @@
 }
 
 .admin-btn--primary {
-  background: var(--intranet-navy, #002b4e);
+  background: var(--intranet-navy, #855099);
   color: #fff;
-  border-color: var(--intranet-navy, #002b4e);
+  border-color: var(--intranet-navy, #855099);
   box-shadow: var(--m3-elevation-1, 0 1px 2px rgba(15, 23, 42, 0.05));
 }
 
 .admin-btn--primary:hover {
-  background: var(--intranet-navy-hover, #003d6b);
+  background: var(--intranet-navy-hover, #6f427f);
   color: #fff;
   box-shadow: var(--m3-elevation-2, 0 2px 6px rgba(15, 23, 42, 0.06));
   transform: translateY(-1px);
@@ -125,8 +125,8 @@
 }
 
 .admin-btn--ghost:hover {
-  border-color: var(--intranet-navy, #002b4e);
-  color: var(--intranet-navy, #002b4e);
+  border-color: var(--intranet-navy, #855099);
+  color: var(--intranet-navy, #855099);
 }
 
 .admin-btn--danger {
@@ -177,7 +177,7 @@
   padding: 0;
   font: inherit;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   cursor: pointer;
   text-align: left;
 }

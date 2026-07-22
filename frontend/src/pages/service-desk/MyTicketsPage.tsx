@@ -49,7 +49,7 @@ export function MyTicketsPage() {
       {isItAgent && (
         <div
           className="admin-alert mb-20"
-          style={{ background: '#eff6ff', borderColor: '#bfdbfe' }}
+          style={{ background: '#f5eef8', borderColor: '#e0cce8' }}
         >
           <strong>Equipo de TI:</strong> para ver todos los tickets, métricas y gestionar
           solicitudes, use{' '}

@@ -24,7 +24,7 @@ export function MessengerPage() {
   return (
     <div className="chat-messenger-page-wrap">
       <PageHeader
-        title="Chat Insular"
+        title="Chat N58"
         breadcrumbParent="Messenger"
         breadcrumbCurrent="Conversaciones"
         breadcrumbParentHref="/messenger"

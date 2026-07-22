@@ -20,7 +20,7 @@
 
 .learning-card__cover {
   height: 140px;
-  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+  background: linear-gradient(135deg, #6f427f 0%, #855099 100%);
   object-fit: cover;
   width: 100%;
 }
@@ -55,7 +55,7 @@
 
 .learning-progress__bar {
   height: 100%;
-  background: linear-gradient(90deg, #1565c0, #42a5f5);
+  background: linear-gradient(90deg, #855099, #b07bc4);
   border-radius: 999px;
 }
 
@@ -71,7 +71,7 @@
 
 .learning-badge--new {
   background: #e3f2fd;
-  color: #0d47a1;
+  color: #6f427f;
 }
 
 .learning-badge--progress {
@@ -133,7 +133,7 @@
 
 .learning-sidebar__lesson--active {
   background: #dbeafe;
-  color: #0d47a1;
+  color: #6f427f;
   font-weight: 600;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .learning-dropzone--active {
-  border-color: #1565c0;
+  border-color: #855099;
   background: #e3f2fd;
 }
 
@@ -214,5 +214,5 @@
 .learning-report-bar__fill {
   height: 100%;
   border-radius: 999px;
-  background: #1565c0;
+  background: #855099;
 }

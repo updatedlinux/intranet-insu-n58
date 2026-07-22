@@ -4,8 +4,8 @@ import type { DashboardChartSeries } from '../../api/dashboard.types';
 
 Chart.register(...registerables);
 
-const CHART_PRIMARY = '#2d6a9f';
-const CHART_NAVY = '#002b4e';
+const CHART_PRIMARY = '#9a6aad';
+const CHART_NAVY = '#855099';
 
 interface ChartBlockProps {
   title: string;

@@ -1,17 +1,17 @@
 /**
  * Material Design 3 — Expressive
- * Refresh visual sobre la estructura Axero + paleta Insular (#002b4e).
+ * Refresh visual sobre la estructura Axero + paleta N58 (#855099).
  */
 
 :root {
-  /* Paleta corporativa (sin cambios) */
-  --intranet-navy: #002b4e;
-  --intranet-navy-hover: #003d6b;
-  --intranet-navy-muted: #1e5a8a;
-  --intranet-slate: #5a6e82;
-  --intranet-slate-hover: #4a5d70;
-  --intranet-chart: #2d6a9f;
-  --intranet-chart-accent: #4a8bc4;
+  /* Paleta corporativa N58 */
+  --intranet-navy: #855099;
+  --intranet-navy-hover: #6f427f;
+  --intranet-navy-muted: #9a5fad;
+  --intranet-slate: #6b5f78;
+  --intranet-slate-hover: #564c61;
+  --intranet-chart: #9a6aad;
+  --intranet-chart-accent: #b07bc4;
 
   /* M3 — formas expressivas */
   --m3-shape-xs: 8px;
@@ -23,20 +23,20 @@
 
   /* M3 — superficies */
   --m3-surface: #ffffff;
-  --m3-surface-dim: #f2f6fa;
+  --m3-surface-dim: #f6f3f8;
   --m3-surface-bright: #ffffff;
   --m3-surface-container-lowest: #ffffff;
-  --m3-surface-container-low: #f8fafc;
-  --m3-surface-container: #eef3f8;
-  --m3-surface-container-high: #e3edf5;
-  --m3-surface-container-highest: #d8e6f2;
+  --m3-surface-container-low: #faf8fc;
+  --m3-surface-container: #f3eef6;
+  --m3-surface-container-high: #ebe3f0;
+  --m3-surface-container-highest: #e2d8e9;
 
-  /* M3 — color (mapeado a Insular) */
+  /* M3 — color (mapeado a N58) */
   --m3-primary: var(--intranet-navy);
   --m3-on-primary: #ffffff;
-  --m3-primary-container: rgba(0, 43, 78, 0.1);
+  --m3-primary-container: rgba(133, 80, 153, 0.1);
   --m3-on-primary-container: var(--intranet-navy);
-  --m3-secondary-container: rgba(45, 106, 159, 0.12);
+  --m3-secondary-container: rgba(154, 106, 173, 0.12);
   --m3-on-secondary-container: var(--intranet-navy-muted);
 
   /* M3 — texto y contornos */

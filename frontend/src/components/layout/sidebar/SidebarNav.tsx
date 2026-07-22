@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronsLeft } from 'lucide-react';
-import { BRAND_ISOTYPE_SRC } from '../../../config/brand';
+import { BRAND_ISOTYPE_SRC, BRAND_NAME, BRAND_TAG } from '../../../config/brand';
 import { useSidebarContext } from '../../../context/SidebarContext';
 import { SidebarNavLink } from './SidebarNavLink';
 import { SidebarNavGroup } from './SidebarNavGroup';
@@ -39,8 +39,8 @@ export function SidebarNav({ mobileOpen = false, onMobileClose }: SidebarNavProp
             />
           </span>
           <span className="intranet-sidebar__brand-text">
-            <span className="intranet-sidebar__brand-name">Insular</span>
-            <span className="intranet-sidebar__brand-tag">Cambios</span>
+            <span className="intranet-sidebar__brand-name">{BRAND_NAME}</span>
+            <span className="intranet-sidebar__brand-tag">{BRAND_TAG}</span>
           </span>
         </Link>
         <button

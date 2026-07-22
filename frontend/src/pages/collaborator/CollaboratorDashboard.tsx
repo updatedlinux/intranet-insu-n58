@@ -30,7 +30,7 @@ export function CollaboratorDashboard() {
       <div className="collab-hero card-style mb-30">
         <div className="collab-hero__content">
           <p className="collab-hero__greeting">Hola, {user.firstName}</p>
-          <h2 className="collab-hero__title">Bienvenido a la intranet de Insular Cambios</h2>
+          <h2 className="collab-hero__title">Bienvenido a la intranet de N58 Banco Digital</h2>
           <p className="collab-hero__subtitle text-gray mb-0">
             Consulta comunicados, accede a documentos y mantén tu información de cuenta al día.
           </p>

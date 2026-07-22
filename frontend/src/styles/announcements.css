@@ -75,7 +75,7 @@
   background: linear-gradient(135deg, #edebe9 0%, #e1dfdd 100%);
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   opacity: 0.35;
 }
 
@@ -199,7 +199,7 @@
   align-items: center;
   gap: 6px;
   font-size: 0.875rem;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   text-decoration: none;
 }
 
@@ -282,7 +282,7 @@
 
 .tiptap-toolbar__btn--active {
   background: #deecf9;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .tiptap-toolbar__btn:disabled {
@@ -321,7 +321,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin: 1em 0 0.5em;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .tiptap-editor__content h3 {
@@ -338,7 +338,7 @@
 }
 
 .tiptap-editor__content a {
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   text-decoration: underline;
 }
 
@@ -377,7 +377,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #edebe9;
-  border-top-color: var(--intranet-navy, #002b4e);
+  border-top-color: var(--intranet-navy, #855099);
   border-radius: 50%;
 }
 
@@ -388,12 +388,12 @@
 }
 
 .dashboard-announcements__icon {
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .dashboard-announcements__link {
   font-size: 0.875rem;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   text-decoration: none;
 }
 

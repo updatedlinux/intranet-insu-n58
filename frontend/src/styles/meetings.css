@@ -43,7 +43,7 @@
 
 .meetings-tabs__btn.is-active {
   background: #fff;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   box-shadow: 0 1px 3px rgba(0, 43, 78, 0.1);
 }
 
@@ -92,7 +92,7 @@
   margin: 0 0 6px;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .meetings-list__datetime {
@@ -225,7 +225,7 @@
 }
 
 .meetings-modality-toggle__btn.is-active {
-  background: var(--intranet-navy, #002b4e);
+  background: var(--intranet-navy, #855099);
   color: #fff;
 }
 
@@ -301,7 +301,7 @@
   margin: 0 0 8px;
   font-size: 1.375rem;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .meetings-detail__organizer {

@@ -73,7 +73,7 @@ export function ServiceDeskManagePage() {
         datasets: [
           {
             data: metrics.byCategory.map((c) => c.count),
-            backgroundColor: ['#002b4e', '#0369a1', '#0d9488', '#ca8a04', '#64748b'],
+            backgroundColor: ['#855099', '#9a5fad', '#0d9488', '#ca8a04', '#64748b'],
           },
         ],
       },

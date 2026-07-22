@@ -1,18 +1,18 @@
-/* Sidebar — Material Expressive + marca Insular */
+/* Sidebar — Material Expressive + marca N58 */
 :root {
   --sidebar-width: 292px;
   --sidebar-width-collapsed: 76px;
-  --sidebar-bg: var(--m3-surface-container-low, #f8fafc);
+  --sidebar-bg: var(--m3-surface-container-low, #faf8fc);
   --sidebar-border: var(--m3-outline, #e2e8f0);
   --sidebar-shadow: var(--m3-elevation-2, 0 2px 6px rgba(15, 23, 42, 0.06));
   --sidebar-text: var(--m3-on-surface-variant, #475569);
   --sidebar-text-hover: var(--m3-on-surface, #0f172a);
   --sidebar-text-muted: #64748b;
   --sidebar-sublink-text: #334155;
-  --sidebar-hover-bg: var(--m3-surface-container, #eef3f8);
-  --sidebar-active-bg: var(--m3-primary-container, rgba(0, 43, 78, 0.1));
-  --sidebar-accent: var(--intranet-navy, #002b4e);
-  --sidebar-accent-soft: var(--intranet-navy-muted, #1e5a8a);
+  --sidebar-hover-bg: var(--m3-surface-container, #f3eef6);
+  --sidebar-active-bg: var(--m3-primary-container, rgba(133, 80, 153, 0.1));
+  --sidebar-accent: var(--intranet-navy, #855099);
+  --sidebar-accent-soft: var(--intranet-navy-muted, #9a5fad);
   --sidebar-radius: var(--m3-shape-xl, 28px);
   --sidebar-pill-radius: var(--m3-shape-full, 9999px);
   --sidebar-transition: 0.28s cubic-bezier(0.2, 0, 0, 1);
@@ -28,7 +28,7 @@
   width: var(--sidebar-width);
   height: 100vh;
   font-size: 16px;
-  background: linear-gradient(180deg, var(--sidebar-bg) 0%, rgba(238, 243, 248, 0.95) 100%);
+  background: linear-gradient(180deg, var(--sidebar-bg) 0%, rgba(243, 238, 246, 0.95) 100%);
   border-right: 1px solid var(--sidebar-border);
   border-radius: 0 var(--sidebar-radius) var(--sidebar-radius) 0;
   box-shadow: var(--sidebar-shadow);
@@ -79,7 +79,7 @@
 }
 
 .intranet-sidebar__brand-mark {
-  width: 44px;
+  width: 52px;
   height: 44px;
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@
 .intranet-sidebar__brand-name {
   font-size: 1.375em;
   font-weight: 800;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   white-space: nowrap;
   letter-spacing: -0.02em;
 }

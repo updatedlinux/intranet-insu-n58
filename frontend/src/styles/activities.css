@@ -7,7 +7,7 @@
   --kanban-column-text: #fff;
   --kanban-column-muted: rgba(255, 255, 255, 0.78);
   --kanban-card-bg: #fff;
-  --kanban-heading: var(--intranet-navy, #002b4e);
+  --kanban-heading: var(--intranet-navy, #855099);
   --kanban-muted: #64748b;
 }
 
@@ -111,7 +111,7 @@
   padding: 8px 14px;
   border: none;
   border-radius: 8px;
-  background: var(--intranet-navy, #002b4e);
+  background: var(--intranet-navy, #855099);
   color: #fff;
   font-weight: 600;
   font-size: 0.875rem;
@@ -119,7 +119,7 @@
 }
 
 .kanban-toolbar__primary-btn:hover {
-  background: #003d6b;
+  background: #6f427f;
 }
 
 .kanban-page__error {
@@ -515,7 +515,7 @@
 
 .kanban-panel__title-input:focus {
   outline: none;
-  border-bottom-color: var(--intranet-navy, #002b4e);
+  border-bottom-color: var(--intranet-navy, #855099);
 }
 
 .kanban-panel__meta {
@@ -557,7 +557,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   text-decoration: none;
   font-size: 0.875rem;
 }
@@ -691,7 +691,7 @@
 
 .kanban-metrics-toolbar__board-name {
   font-weight: 700;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -742,7 +742,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
 }
 
 .kanban-metric-card.is-warning .kanban-metric-card__value {
@@ -884,7 +884,7 @@
 
 .kanban-bar-chart__fill {
   height: 100%;
-  background: var(--intranet-navy, #002b4e);
+  background: var(--intranet-navy, #855099);
   border-radius: 999px;
   min-width: 4px;
 }
@@ -927,7 +927,7 @@
   padding: 0;
   text-align: left;
   font-weight: 600;
-  color: var(--intranet-navy, #002b4e);
+  color: var(--intranet-navy, #855099);
   cursor: pointer;
   font-size: 0.875rem;
 }
@@ -1108,7 +1108,7 @@
   .kanban-mobile-dots__dot.is-active {
     width: 10px;
     height: 10px;
-    background: var(--intranet-navy, #002b4e);
+    background: var(--intranet-navy, #855099);
   }
 
   .kanban-mobile-fab {
@@ -1122,7 +1122,7 @@
     height: 56px;
     border: none;
     border-radius: 999px;
-    background: var(--intranet-navy, #002b4e);
+    background: var(--intranet-navy, #855099);
     color: #fff;
     box-shadow: 0 6px 20px rgba(0, 43, 78, 0.28);
     cursor: pointer;

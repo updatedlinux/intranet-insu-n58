@@ -1,7 +1,14 @@
-import { BRAND_ISOTYPE_SRC, BRAND_LOGO_NEGATIVE_SRC, BRAND_LOGO_SRC } from '../../config/brand';
+import {
+  BRAND_FULL_NAME,
+  BRAND_ISOTYPE_SRC,
+  BRAND_LOGO_NEGATIVE_SRC,
+  BRAND_LOGO_SRC,
+  BRAND_NAME,
+  BRAND_TAG,
+} from '../../config/brand';
 
 interface InsularLogoProps {
-  /** `negative`: logo blanco para fondos oscuros (login). `full`: logo color. `default`: isotipo + texto */
+  /** `negative`: logo claro para fondos oscuros (login). `full`: logo color. `default`: isotipo + texto */
   variant?: 'default' | 'compact' | 'full' | 'negative';
   /** Para usos sobre fondo claro u oscuro (solo afecta variantes con texto) */
   theme?: 'light' | 'dark';
@@ -13,9 +20,9 @@ export function InsularLogo({ variant = 'default', theme = 'light' }: InsularLog
     return (
       <div
         className={`insular-logo insular-logo--full insular-logo--${variant}`}
-        aria-label="Insular"
+        aria-label={BRAND_FULL_NAME}
       >
-        <img src={src} alt="Insular" className="insular-logo__image" />
+        <img src={src} alt={BRAND_FULL_NAME} className="insular-logo__image" />
       </div>
     );
   }
@@ -23,15 +30,15 @@ export function InsularLogo({ variant = 'default', theme = 'light' }: InsularLog
   return (
     <div
       className={`insular-logo insular-logo--${variant} insular-logo--theme-${theme}`}
-      aria-label="Insular Cambios"
+      aria-label={BRAND_FULL_NAME}
     >
       <span className="insular-logo__mark">
         <img src={BRAND_ISOTYPE_SRC} alt="" className="insular-logo__isotype" aria-hidden />
       </span>
       {variant === 'default' && (
         <div className="insular-logo__text">
-          <span className="insular-logo__name">Insular</span>
-          <span className="insular-logo__tag">Cambios</span>
+          <span className="insular-logo__name">{BRAND_NAME}</span>
+          <span className="insular-logo__tag">{BRAND_TAG}</span>
         </div>
       )}
     </div>

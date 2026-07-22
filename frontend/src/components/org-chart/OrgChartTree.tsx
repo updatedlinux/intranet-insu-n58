@@ -66,7 +66,7 @@ export function OrgChartTree({
       <div className="org-chart__brand">
         <img
           src={BRAND_LOGO_NEGATIVE_SRC}
-          alt="Insular"
+          alt="N58"
           className="org-chart__logo"
           draggable={false}
         />
