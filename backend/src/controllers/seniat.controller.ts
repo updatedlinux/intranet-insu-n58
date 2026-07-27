@@ -1,8 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import {
-  buildTemplateExcel,
-  readCedulasFromExcel,
-} from '../services/seniat/excel';
+import { buildTemplateExcel, readCedulasFromExcel } from '../services/seniat/excel';
 import {
   createSeniatJob,
   getSeniatJob,
@@ -155,10 +152,7 @@ export async function downloadSeniatTemplateHandler(
       'Content-Type',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     );
-    res.setHeader(
-      'Content-Disposition',
-      'attachment; filename="plantilla-cedulas-insular.xlsx"',
-    );
+    res.setHeader('Content-Disposition', 'attachment; filename="plantilla-cedulas-insular.xlsx"');
     res.send(excelBuffer);
   } catch (error) {
     next(error);

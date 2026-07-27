@@ -133,7 +133,12 @@ export function ConsultaSeniatPage() {
       </div>
 
       {modalOpen ? (
-        <div className="seniat-modal" role="dialog" aria-modal="true" aria-labelledby="seniat-modal-title">
+        <div
+          className="seniat-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="seniat-modal-title"
+        >
           <div className="seniat-modal__backdrop" />
           <div className="seniat-modal__dialog">
             <div className="seniat-modal__spinner" aria-hidden="true" />

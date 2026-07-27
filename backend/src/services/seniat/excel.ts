@@ -1,6 +1,5 @@
-// @ts-nocheck
-import path from 'node:path';
 import fs from 'node:fs';
+import path from 'node:path';
 import ExcelJS from 'exceljs';
 import sharp from 'sharp';
 import { inferGender } from './gender';
@@ -8,7 +7,6 @@ import { inferGender } from './gender';
 const COLORS = {
   navy: 'FF002B4E',
   navyMuted: 'FF1E5A8A',
-  surface: 'FFF2F6FA',
   white: 'FFFFFFFF',
   outline: 'FFE2E8F0',
   cedulaBg: 'FFE8F1F8',
@@ -19,33 +17,38 @@ const COLORS = {
   error: 'FFFEE4E2',
   text: 'FF0F172A',
   muted: 'FF475569',
-};
+} as const;
 
 const LOGO_SVG_PATH = path.join(__dirname, '..', '..', '..', 'assets', 'favicon.svg');
 const HEADER_ROW = 5;
 const DATA_START_ROW = 6;
 
-let logoPngCache = null;
+let logoPngCache: Buffer | null = null;
 
-async function getLogoPng() {
+async function getLogoPng(): Promise<Buffer> {
   if (logoPngCache) return logoPngCache;
   const svg = fs.readFileSync(LOGO_SVG_PATH);
   logoPngCache = await sharp(svg).resize(160, 160).png().toBuffer();
   return logoPngCache;
 }
 
-function cellText(cell) {
-  const value = cell?.value;
+function cellText(cell: ExcelJS.Cell | { value?: unknown }): string {
+  const value = 'value' in cell ? cell.value : undefined;
   if (value == null) return '';
   if (typeof value === 'object') {
-    if (value.text) return String(value.text);
-    if (value.result != null) return String(value.result);
-    if (Array.isArray(value.richText)) return value.richText.map((t) => t.text).join('');
+    const obj = value as {
+      text?: string;
+      result?: unknown;
+      richText?: Array<{ text: string }>;
+    };
+    if (obj.text) return String(obj.text);
+    if (obj.result != null) return String(obj.result);
+    if (Array.isArray(obj.richText)) return obj.richText.map((t) => t.text).join('');
   }
   return String(value);
 }
 
-function normalizeHeader(value) {
+function normalizeHeader(value: unknown): string {
   return String(value || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -53,7 +56,7 @@ function normalizeHeader(value) {
     .toUpperCase();
 }
 
-function applyHeaderStyle(cell) {
+function applyHeaderStyle(cell: ExcelJS.Cell): void {
   cell.font = { bold: true, color: { argb: COLORS.white }, name: 'Calibri', size: 11 };
   cell.fill = {
     type: 'pattern',
@@ -70,20 +73,26 @@ function applyHeaderStyle(cell) {
 }
 
 function thinBorder(color = COLORS.outline) {
-  const edge = { style: 'thin', color: { argb: color } };
+  const edge: Partial<ExcelJS.Border> = { style: 'thin', color: { argb: color } };
   return { top: edge, left: edge, bottom: edge, right: edge };
 }
 
-async function addBrandHeader(workbook, sheet, { title, subtitle }) {
+async function addBrandHeader(
+  workbook: ExcelJS.Workbook,
+  sheet: ExcelJS.Worksheet,
+  { title, subtitle }: { title: string; subtitle: string },
+): Promise<void> {
   const logo = await getLogoPng();
-  const imageId = workbook.addImage({ buffer: logo, extension: 'png' });
+  const imageId = workbook.addImage({
+    buffer: Buffer.from(logo) as unknown as ExcelJS.Buffer,
+    extension: 'png',
+  });
 
   sheet.addImage(imageId, {
     tl: { col: 0.15, row: 0.15 },
     ext: { width: 48, height: 48 },
   });
 
-  // Título en columna F para no interferir con CÉDULA / RIF / NOMBRE / SEXO
   sheet.getCell('F1').value = title;
   sheet.getCell('F1').font = {
     bold: true,
@@ -122,7 +131,7 @@ async function addBrandHeader(workbook, sheet, { title, subtitle }) {
   sheet.getColumn(6).width = 42;
 }
 
-function writeColumnHeaders(sheet) {
+function writeColumnHeaders(sheet: ExcelJS.Worksheet): void {
   const headers = [
     { col: 2, label: 'CÉDULA' },
     { col: 3, label: 'RIF' },
@@ -137,7 +146,11 @@ function writeColumnHeaders(sheet) {
   }
 }
 
-function styleDataRow(sheet, rowNumber, { sexo, hasError }) {
+function styleDataRow(
+  sheet: ExcelJS.Worksheet,
+  rowNumber: number,
+  { sexo, hasError }: { sexo: string; hasError: boolean },
+): void {
   const cedulaCell = sheet.getCell(rowNumber, 2);
   const rifCell = sheet.getCell(rowNumber, 3);
   const nombreCell = sheet.getCell(rowNumber, 4);
@@ -181,7 +194,7 @@ function styleDataRow(sheet, rowNumber, { sexo, hasError }) {
   nombreCell.border = thinBorder();
 
   const sexoUpper = String(sexo || '').toUpperCase();
-  let sexoBg = COLORS.sexoEmpty;
+  let sexoBg: string = COLORS.sexoEmpty;
   if (sexoUpper === 'FEMENINO') sexoBg = COLORS.sexoFemenino;
   if (sexoUpper === 'MASCULINO') sexoBg = COLORS.sexoMasculino;
 
@@ -202,13 +215,12 @@ function styleDataRow(sheet, rowNumber, { sexo, hasError }) {
   sheet.getRow(rowNumber).height = 20;
 }
 
-/**
- * Lee cédulas desde un Excel (columna CEDULA / CÉDULA).
- */
-async function readCedulasFromExcel(input) {
+export async function readCedulasFromExcel(
+  input: Buffer | string,
+): Promise<Array<{ rowNumber: number; cedula: string }>> {
   const workbook = new ExcelJS.Workbook();
   if (Buffer.isBuffer(input)) {
-    await workbook.xlsx.load(input);
+    await workbook.xlsx.load(input as unknown as ExcelJS.Buffer);
   } else {
     await workbook.xlsx.readFile(input);
   }
@@ -218,31 +230,28 @@ async function readCedulasFromExcel(input) {
 
   let headerRow = 1;
   let cedulaCol = 1;
-  let rifCol = 2;
-  let sexoCol = 3;
   let foundHeader = false;
 
   sheet.eachRow((row, rowNumber) => {
-    const values = Array.from(row.values || [], (v) => {
+    const rawValues = Array.isArray(row.values) ? row.values : [];
+    const values = Array.from(rawValues, (v) => {
       if (v == null) return '';
       if (typeof v === 'object') return normalizeHeader(cellText({ value: v }));
       return normalizeHeader(v);
     });
 
     const cedulaIdx = values.findIndex(
-      (v) => v === 'CEDULA' || (v.startsWith('CEDULA') && v.length <= 20)
+      (v) => v === 'CEDULA' || (v.startsWith('CEDULA') && v.length <= 20),
     );
     const rifIdx = values.findIndex(
-      (v) => v === 'RIF' || v === 'RIF NOMBRES Y APELLIDOS' || (v.includes('RIF') && v.length <= 40)
+      (v) =>
+        v === 'RIF' || v === 'RIF NOMBRES Y APELLIDOS' || (v.includes('RIF') && v.length <= 40),
     );
     const sexoIdx = values.findIndex((v) => v === 'SEXO');
 
-    // Fila de encabezados reales: CÉDULA + (RIF o SEXO)
     if (cedulaIdx > 0 && (rifIdx > 0 || sexoIdx > 0)) {
       headerRow = rowNumber;
       cedulaCol = cedulaIdx;
-      if (rifIdx > 0) rifCol = rifIdx;
-      if (sexoIdx > 0) sexoCol = sexoIdx;
       foundHeader = true;
     }
   });
@@ -252,28 +261,21 @@ async function readCedulasFromExcel(input) {
     if (b2.includes('CEDULA')) {
       headerRow = 2;
       cedulaCol = 2;
-      rifCol = 3;
-      sexoCol = 5;
     }
   }
 
-  const rows = [];
+  const rows: Array<{ rowNumber: number; cedula: string }> = [];
   sheet.eachRow((row, rowNumber) => {
     if (rowNumber <= headerRow) return;
     const cedula = cellText(row.getCell(cedulaCol)).replace(/\D/g, '').trim();
     if (!cedula) return;
-
     rows.push({ rowNumber, cedula });
   });
 
   return rows;
 }
 
-/**
- * Plantilla vacía para que el usuario complete cédulas.
- * Sin celdas combinadas en B/C/D para permitir pegar listas libremente.
- */
-async function buildTemplateExcel() {
+export async function buildTemplateExcel(): Promise<Buffer> {
   const workbook = new ExcelJS.Workbook();
   workbook.creator = 'Insular Cambios';
   workbook.created = new Date();
@@ -289,7 +291,6 @@ async function buildTemplateExcel() {
 
   writeColumnHeaders(sheet);
 
-  // Muchas filas libres, sin merges ni valores de ejemplo que estorben al pegar
   const READY_ROWS = 300;
   for (let i = 0; i < READY_ROWS; i++) {
     const row = DATA_START_ROW + i;
@@ -312,14 +313,14 @@ async function buildTemplateExcel() {
   help.getCell('A3').value = '1. Ve a la hoja CEDULAS.';
   help.getCell('A4').value = '2. Selecciona la celda B6 (primera fila bajo el encabezado CÉDULA).';
   help.getCell('A5').value = '3. Pega tu lista de cédulas (una por fila, solo números).';
-  help.getCell('A6').value = '4. No llenes RIF, NOMBRES ni SEXO: el sistema los completa al consultar.';
+  help.getCell('A6').value =
+    '4. No llenes RIF, NOMBRES ni SEXO: el sistema los completa al consultar.';
   help.getCell('A7').value = '5. Guarda el archivo y súbelo en Consulta SENIAT.';
   help.getCell('A9').value = 'Tip: no pegues sobre el encabezado (fila 5). Empieza siempre en B6.';
   help.getCell('A9').font = { italic: true, color: { argb: COLORS.muted }, name: 'Calibri' };
 
   for (const r of [3, 4, 5, 6, 7, 9]) {
     help.getCell(`A${r}`).font = {
-      ...(help.getCell(`A${r}`).font || {}),
       name: 'Calibri',
       size: 11,
       color: { argb: COLORS.text },
@@ -330,10 +331,15 @@ async function buildTemplateExcel() {
   return Buffer.from(arrayBuffer);
 }
 
-/**
- * Excel de resultado estilizado con marca Insular.
- */
-async function buildResultExcel(records) {
+export async function buildResultExcel(
+  records: Array<{
+    cedula: string;
+    rif?: string;
+    nombre?: string;
+    sexo?: string;
+    error?: string;
+  }>,
+): Promise<Buffer> {
   const workbook = new ExcelJS.Workbook();
   workbook.creator = 'Insular Cambios';
   workbook.created = new Date();
@@ -367,5 +373,3 @@ async function buildResultExcel(records) {
   const arrayBuffer = await workbook.xlsx.writeBuffer();
   return Buffer.from(arrayBuffer);
 }
-
-export { readCedulasFromExcel, buildResultExcel, buildTemplateExcel };

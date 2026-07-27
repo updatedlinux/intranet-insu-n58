@@ -69,7 +69,7 @@ function runTesseract(imagePath: string): string {
   const votes: Record<string, number> = {};
 
   for (const psm of ['7', '8', '13']) {
-    let raw = '';
+    let raw: string;
     try {
       raw = execFileSync(
         'tesseract',
@@ -90,7 +90,10 @@ function runTesseract(imagePath: string): string {
       raw = failed.stdout?.toString() || '';
     }
 
-    const out = raw.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    const out = raw
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
     if (out) votes[out] = (votes[out] || 0) + 1;
   }
 

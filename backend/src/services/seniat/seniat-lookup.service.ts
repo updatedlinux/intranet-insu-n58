@@ -1,4 +1,7 @@
-import { findSeniatLookupByCedula, upsertSeniatLookup } from '../../repositories/seniat-lookup.repository';
+import {
+  findSeniatLookupByCedula,
+  upsertSeniatLookup,
+} from '../../repositories/seniat-lookup.repository';
 import { inferGender } from './gender';
 import { lookupCedulaOnSeniat } from './seniat-client';
 

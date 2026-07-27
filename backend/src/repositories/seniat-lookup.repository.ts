@@ -15,9 +15,7 @@ export interface SeniatLookupRow {
 
 export async function findSeniatLookupByCedula(cedula: string): Promise<SeniatLookupRow | null> {
   const pool = getPool();
-  const result = await pool
-    .request()
-    .input('cedula', sql.NVarChar(20), cedula)
+  const result = await pool.request().input('cedula', sql.NVarChar(20), cedula)
     .query<SeniatLookupRow>(`
       SELECT id, cedula, rif, nombre, sexo, source, consultedAt, createdAt, updatedAt
       FROM dbo.SeniatLookups
@@ -40,8 +38,7 @@ export async function upsertSeniatLookup(input: {
     .input('rif', sql.NVarChar(20), input.rif)
     .input('nombre', sql.NVarChar(300), input.nombre)
     .input('sexo', sql.NVarChar(20), input.sexo)
-    .input('source', sql.NVarChar(20), input.source || 'SENIAT')
-    .query(`
+    .input('source', sql.NVarChar(20), input.source || 'SENIAT').query(`
       MERGE dbo.SeniatLookups AS target
       USING (SELECT @cedula AS cedula) AS source
       ON target.cedula = source.cedula
