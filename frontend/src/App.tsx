@@ -68,6 +68,7 @@ import { EventsManagePage } from './pages/admin/EventsManagePage';
 import { EventCreatePage, EventEditPage } from './pages/admin/EventFormPages';
 import { EventsListPage } from './pages/events/EventsListPage';
 import { EventDetailPage } from './pages/events/EventDetailPage';
+import { ConsultaSeniatPage } from './pages/seniat/ConsultaSeniatPage';
 
 function AdminRoutes() {
   return (
@@ -153,6 +154,7 @@ function App() {
             <Route path="eventos" element={<EventsListPage />} />
             <Route path="eventos/:id" element={<EventDetailPage />} />
             <Route path="directorio" element={<DirectoryPage />} />
+            <Route path="consulta-seniat" element={<ConsultaSeniatPage />} />
             <Route path="messenger" element={<MessengerPage />} />
             <Route path="learning" element={<LearningCatalogPage />} />
             <Route

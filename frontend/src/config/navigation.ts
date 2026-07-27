@@ -9,6 +9,7 @@ import {
   Kanban,
   GraduationCap,
   MessageCircle,
+  SearchCheck,
 } from 'lucide-react';
 import { isAdminRole } from './roles';
 
@@ -109,6 +110,13 @@ export const COLLABORATOR_NAV: NavMenuItem[] = [
     label: 'Chat Insular',
     icon: MessageCircle,
     path: '/messenger',
+    ready: true,
+  },
+  {
+    id: 'consulta-seniat',
+    label: 'Consulta Seniat',
+    icon: SearchCheck,
+    path: '/consulta-seniat',
     ready: true,
   },
 ];
@@ -214,6 +222,13 @@ export const ADMIN_NAV: NavMenuItem[] = [
     label: 'Chat Insular',
     icon: MessageCircle,
     path: '/messenger',
+    ready: true,
+  },
+  {
+    id: 'consulta-seniat',
+    label: 'Consulta Seniat',
+    icon: SearchCheck,
+    path: '/consulta-seniat',
     ready: true,
   },
 ];

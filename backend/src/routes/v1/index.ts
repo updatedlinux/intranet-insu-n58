@@ -29,6 +29,7 @@ import chatRoutes from './chat.routes';
 import healthRoutes from './health.routes';
 import notificationsRoutes from './notifications.routes';
 import usersRoutes from './users.routes';
+import seniatRoutes from './seniat.routes';
 
 const router = Router();
 
@@ -60,6 +61,7 @@ router.use('/events', corporateEventsRoutes);
 router.use('/users', usersRoutes);
 router.use('/notifications', notificationsRoutes);
 router.use('/org-chart', orgChartRoutes);
+router.use('/seniat', seniatRoutes);
 
 if (config.isDevelopment) {
   router.use('/dev', devRoutes);
