@@ -4,6 +4,24 @@ import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 
+let tesseractAvailable: boolean | null = null;
+
+export function assertTesseractAvailable(): void {
+  if (tesseractAvailable === true) return;
+  try {
+    execFileSync('tesseract', ['--version'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    tesseractAvailable = true;
+  } catch {
+    tesseractAvailable = false;
+    throw new Error(
+      'Tesseract OCR no está instalado en el servidor. Instala tesseract-ocr para resolver el captcha SENIAT.',
+    );
+  }
+}
+
 function isRed(r: number, g: number, b: number): boolean {
   return r > 70 && r > g + 30 && r > b + 30 && g < 130 && b < 130;
 }
@@ -108,6 +126,7 @@ function runTesseract(imagePath: string): string {
 }
 
 export async function solveCaptcha(imageBuffer: Buffer): Promise<string> {
+  assertTesseractAvailable();
   const processed = await preprocessCaptcha(imageBuffer);
   const tmp = path.join(os.tmpdir(), `seniat-captcha-${process.pid}-${Date.now()}.png`);
   fs.writeFileSync(tmp, processed);

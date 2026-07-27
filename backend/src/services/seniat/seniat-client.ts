@@ -39,7 +39,14 @@ function createClient(): { client: AxiosInstance; jar: CookieJar } {
     if (setCookie) {
       const cookies = Array.isArray(setCookie) ? setCookie : [setCookie];
       for (const c of cookies) {
-        await jar.setCookie(c, url);
+        try {
+          // SENIAT a veces envía Set-Cookie malformados (ej. "HttpOnly;Secure").
+          // Solo nos interesa JSESSIONID sobre HTTP (sin exigir Secure).
+          if (!/=/.test(c) || /^HttpOnly/i.test(c.trim())) continue;
+          await jar.setCookie(c.replace(/;\s*Secure/gi, ''), url);
+        } catch {
+          /* ignore invalid cookies */
+        }
       }
     }
     return response;
@@ -88,6 +95,8 @@ export async function lookupCedulaOnSeniat(cedula: string): Promise<SeniatLookup
   const cedulaStr = String(cedula).replace(/\D/g, '');
   if (!cedulaStr) return { error: 'invalid_cedula' };
 
+  let lastError = '';
+
   for (let attempt = 1; attempt <= MAX_CAPTCHA_RETRIES; attempt++) {
     const { client } = createClient();
 
@@ -97,6 +106,7 @@ export async function lookupCedulaOnSeniat(cedula: string): Promise<SeniatLookup
       const code = await solveCaptcha(Buffer.from(captchaRes.data as ArrayBuffer));
 
       if (!code || code.length < 4) {
+        lastError = 'ocr_empty';
         await sleep(300);
         continue;
       }
@@ -116,19 +126,27 @@ export async function lookupCedulaOnSeniat(cedula: string): Promise<SeniatLookup
       const parsed = parseSeniatHtml(html);
 
       if ('error' in parsed && parsed.error === 'captcha') {
+        lastError = 'captcha_mismatch';
         await sleep(250);
         continue;
       }
 
       return parsed;
     } catch (err) {
+      const message = err instanceof Error ? err.message : 'network';
+      lastError = message;
+      console.error(`[seniat] intento ${attempt}/${MAX_CAPTCHA_RETRIES} falló:`, message);
+      if (/tesseract/i.test(message)) {
+        return { error: message };
+      }
       if (attempt === MAX_CAPTCHA_RETRIES) {
-        const message = err instanceof Error ? err.message : 'network';
         return { error: `network: ${message}` };
       }
       await sleep(500);
     }
   }
 
-  return { error: 'captcha_retries_exhausted' };
+  return {
+    error: lastError ? `captcha_retries_exhausted:${lastError}` : 'captcha_retries_exhausted',
+  };
 }

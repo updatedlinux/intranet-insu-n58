@@ -20,8 +20,12 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends tini \
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y --no-install-recommends \
+    tini \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+  && rm -rf /var/lib/apt/lists/* \
+  && tesseract --version
 
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
